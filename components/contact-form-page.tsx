@@ -118,7 +118,7 @@ export function ContactFormPage() {
 
   return (
     <section className="min-h-[calc(100vh-10rem)] bg-gradient-to-b from-muted/50 to-background py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Pridobite brezplačno ponudbo
@@ -128,100 +128,10 @@ export function ContactFormPage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-5">
-          {/* Contact Info Sidebar */}
-          <div className="flex flex-col gap-6 lg:col-span-2">
-            <div>
-              <h2 className="text-xl font-semibold text-foreground">
-                Kontaktni podatki
-              </h2>
-              <p className="mt-2 text-muted-foreground">
-                Dosegljivi smo preko telefona, e-pošte ali nas obiščite v naši pisarni.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div className="group flex items-start gap-4 rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md hover:-translate-y-1">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
-                  <Mail className="size-6 text-primary transition-colors group-hover:text-accent" />
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">E-pošta</p>
-                  <a
-                    href="mailto:info@krovstvo-vrh.si"
-                    className="text-muted-foreground transition-colors hover:text-accent"
-                  >
-                    info@krovstvo-vrh.si
-                  </a>
-                </div>
-              </div>
-
-              <div className="group flex items-start gap-4 rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md hover:-translate-y-1">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
-                  <Phone className="size-6 text-primary transition-colors group-hover:text-accent" />
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Telefon</p>
-                  <a
-                    href="tel:+38612345678"
-                    className="text-muted-foreground transition-colors hover:text-accent"
-                  >
-                    +386 1 234 5678
-                  </a>
-                </div>
-              </div>
-
-              <div className="group flex items-start gap-4 rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md hover:-translate-y-1">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
-                  <MapPin className="size-6 text-primary transition-colors group-hover:text-accent" />
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Naslov</p>
-                  <p className="text-muted-foreground">
-                    Dunajska cesta 123<br />
-                    1000 Ljubljana, Slovenija
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-lg border border-border bg-gradient-to-br from-card to-accent/5 p-6 shadow-sm transition-all duration-300 hover:shadow-md">
-              <div className="flex items-center gap-3">
-                <Clock className="size-5 text-accent" />
-                <h3 className="font-semibold text-foreground">Delovni čas</h3>
-              </div>
-              <div className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
-                <div className="flex justify-between">
-                  <span>Ponedeljek - Petek</span>
-                  <span className="font-medium text-foreground">7:00 - 17:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sobota</span>
-                  <span className="font-medium text-foreground">8:00 - 12:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Nedelja</span>
-                  <span className="font-medium text-destructive">Zaprto</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Map Placeholder */}
-            <div className="aspect-video overflow-hidden rounded-lg border border-border bg-gradient-to-br from-muted to-primary/5 transition-all duration-300 hover:shadow-md">
-              <div className="flex h-full flex-col items-center justify-center gap-3 p-4 text-center">
-                <div className="flex size-12 items-center justify-center rounded-full bg-primary/10">
-                  <MapPin className="size-6 text-primary" />
-                </div>
-                <p className="text-sm font-medium text-foreground">Google Maps - Placeholder</p>
-                <p className="text-xs text-muted-foreground">
-                  Dunajska cesta 123, Ljubljana
-                </p>
-              </div>
-            </div>
-          </div>
-
+        {/* Form and Contact Info - Side by Side */}
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {/* Form */}
-          <Card className="h-fit border-accent/20 shadow-lg transition-all duration-300 hover:shadow-xl lg:col-span-3">
+          <Card className="border-accent/20 shadow-lg transition-all duration-300 hover:shadow-xl">
             <CardHeader className="bg-gradient-to-r from-primary/5 to-accent/5">
               <CardTitle className="text-primary">Pošljite povpraševanje</CardTitle>
               <CardDescription>
@@ -230,82 +140,78 @@ export function ContactFormPage() {
             </CardHeader>
             <CardContent className="pt-6">
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="name">Ime in priimek *</Label>
-                    <Input
-                      id="name"
-                      placeholder="Janez Novak"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      aria-invalid={!!errors.name}
-                      className="transition-all focus:border-accent focus:ring-accent"
-                    />
-                    {errors.name && (
-                      <p className="text-sm text-destructive">{errors.name}</p>
-                    )}
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="phone">Telefon *</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="+386 40 123 456"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
-                      aria-invalid={!!errors.phone}
-                      className="transition-all focus:border-accent focus:ring-accent"
-                    />
-                    {errors.phone && (
-                      <p className="text-sm text-destructive">{errors.phone}</p>
-                    )}
-                  </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="name">Ime in priimek *</Label>
+                  <Input
+                    id="name"
+                    placeholder="Janez Novak"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    aria-invalid={!!errors.name}
+                    className="transition-all focus:border-accent focus:ring-accent"
+                  />
+                  {errors.name && (
+                    <p className="text-sm text-destructive">{errors.name}</p>
+                  )}
                 </div>
 
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="email">E-pošta *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="janez@primer.si"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      aria-invalid={!!errors.email}
-                      className="transition-all focus:border-accent focus:ring-accent"
-                    />
-                    {errors.email && (
-                      <p className="text-sm text-destructive">{errors.email}</p>
-                    )}
-                  </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="phone">Telefon *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+386 40 123 456"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                    aria-invalid={!!errors.phone}
+                    className="transition-all focus:border-accent focus:ring-accent"
+                  />
+                  {errors.phone && (
+                    <p className="text-sm text-destructive">{errors.phone}</p>
+                  )}
+                </div>
 
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="service">Vrsta storitve</Label>
-                    <Select
-                      value={formData.service}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, service: value })
-                      }
-                    >
-                      <SelectTrigger id="service" className="w-full transition-all focus:border-accent focus:ring-accent">
-                        <SelectValue placeholder="Izberite storitev" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {serviceOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="email">E-pošta *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="janez@primer.si"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    aria-invalid={!!errors.email}
+                    className="transition-all focus:border-accent focus:ring-accent"
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email}</p>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="service">Vrsta storitve</Label>
+                  <Select
+                    value={formData.service}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, service: value })
+                    }
+                  >
+                    <SelectTrigger id="service" className="w-full transition-all focus:border-accent focus:ring-accent">
+                      <SelectValue placeholder="Izberite storitev" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {serviceOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="flex flex-col gap-2">
@@ -313,7 +219,7 @@ export function ContactFormPage() {
                   <Textarea
                     id="message"
                     placeholder="Opišite vaše potrebe, lokacijo objekta, približno velikost strehe..."
-                    rows={5}
+                    rows={4}
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
@@ -356,6 +262,105 @@ export function ContactFormPage() {
               </form>
             </CardContent>
           </Card>
+
+          {/* Contact Info */}
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-xl font-semibold text-foreground">
+                Kontaktni podatki
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Dosegljivi smo preko telefona, e-pošte ali nas obiščite v naši pisarni.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <a
+                href="mailto:info@krovstvo-vrh.si"
+                className="group flex items-start gap-4 rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md hover:scale-[1.02]"
+              >
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
+                  <Mail className="size-6 text-primary transition-colors group-hover:text-accent" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground transition-colors group-hover:text-accent">E-pošta</p>
+                  <span className="text-muted-foreground">
+                    info@krovstvo-vrh.si
+                  </span>
+                </div>
+              </a>
+
+              <a
+                href="tel:+38612345678"
+                className="group flex items-start gap-4 rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md hover:scale-[1.02]"
+              >
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
+                  <Phone className="size-6 text-primary transition-colors group-hover:text-accent" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground transition-colors group-hover:text-accent">Telefon</p>
+                  <span className="text-muted-foreground">
+                    +386 1 234 5678
+                  </span>
+                </div>
+              </a>
+
+              <div className="group flex items-start gap-4 rounded-lg border border-border bg-card p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
+                  <MapPin className="size-6 text-primary transition-colors group-hover:text-accent" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground transition-colors group-hover:text-accent">Naslov</p>
+                  <p className="text-muted-foreground">
+                    Dunajska cesta 123<br />
+                    1000 Ljubljana, Slovenija
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section - Working Hours and Map */}
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          {/* Working Hours */}
+          <div className="rounded-lg border border-border bg-gradient-to-br from-card to-accent/5 p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div className="flex items-center gap-3">
+              <div className="flex size-10 items-center justify-center rounded-lg bg-accent/20">
+                <Clock className="size-5 text-accent" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground">Delovni čas</h3>
+            </div>
+            <div className="mt-6 flex flex-col gap-3 text-sm">
+              <div className="flex justify-between border-b border-border/50 pb-3">
+                <span className="text-muted-foreground">Ponedeljek - Petek</span>
+                <span className="font-medium text-foreground">7:00 - 17:00</span>
+              </div>
+              <div className="flex justify-between border-b border-border/50 pb-3">
+                <span className="text-muted-foreground">Sobota</span>
+                <span className="font-medium text-foreground">8:00 - 12:00</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Nedelja</span>
+                <span className="font-medium text-destructive">Zaprto</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Map Placeholder */}
+          <div className="overflow-hidden rounded-lg border border-border bg-gradient-to-br from-muted to-primary/5 transition-all duration-300 hover:shadow-md">
+            <div className="flex h-full min-h-[200px] flex-col items-center justify-center gap-4 p-6 text-center">
+              <div className="flex size-14 items-center justify-center rounded-full bg-primary/10">
+                <MapPin className="size-7 text-primary" />
+              </div>
+              <div>
+                <p className="font-medium text-foreground">Google Maps - Placeholder</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Dunajska cesta 123, Ljubljana
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

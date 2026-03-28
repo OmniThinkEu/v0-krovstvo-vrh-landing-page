@@ -53,51 +53,51 @@ export function ContactInfo() {
           }`}
         >
           {/* Email */}
-          <div className="flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10">
-              <Mail className="size-7 text-primary" />
+          <a
+            href="mailto:info@krovstvo-vrh.si"
+            className="group flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-accent/50"
+          >
+            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-accent/20">
+              <Mail className="size-7 text-primary transition-colors group-hover:text-accent" />
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-foreground">E-pošta</h3>
-            <a
-              href="mailto:info@krovstvo-vrh.si"
-              className="mt-2 text-muted-foreground transition-colors hover:text-accent"
-            >
+            <h3 className="mt-4 text-lg font-semibold text-foreground transition-colors group-hover:text-accent">E-pošta</h3>
+            <span className="mt-2 text-muted-foreground transition-colors group-hover:text-foreground">
               info@krovstvo-vrh.si
-            </a>
-          </div>
+            </span>
+          </a>
 
           {/* Phone */}
-          <div className="flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10">
-              <Phone className="size-7 text-primary" />
+          <a
+            href="tel:+38612345678"
+            className="group flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-accent/50"
+          >
+            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-accent/20">
+              <Phone className="size-7 text-primary transition-colors group-hover:text-accent" />
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-foreground">Telefon</h3>
-            <a
-              href="tel:+38612345678"
-              className="mt-2 text-muted-foreground transition-colors hover:text-accent"
-            >
+            <h3 className="mt-4 text-lg font-semibold text-foreground transition-colors group-hover:text-accent">Telefon</h3>
+            <span className="mt-2 text-muted-foreground transition-colors group-hover:text-foreground">
               +386 1 234 5678
-            </a>
-          </div>
+            </span>
+          </a>
 
           {/* Address */}
-          <div className="flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10">
-              <MapPin className="size-7 text-primary" />
+          <Link
+            href="/kontakt"
+            className="group flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-accent/50"
+          >
+            <div className="flex size-14 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-accent/20">
+              <MapPin className="size-7 text-primary transition-colors group-hover:text-accent" />
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-foreground">Naslov</h3>
-            <p className="mt-2 text-muted-foreground">
+            <h3 className="mt-4 text-lg font-semibold text-foreground transition-colors group-hover:text-accent">Naslov</h3>
+            <p className="mt-2 text-muted-foreground transition-colors group-hover:text-foreground">
               Dunajska cesta 123<br />
               1000 Ljubljana
             </p>
-            <Link
-              href="/kontakt"
-              className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent/80"
-            >
+            <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent transition-all group-hover:gap-2">
               Pošljite povpraševanje
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
         </div>
       </div>
     </section>

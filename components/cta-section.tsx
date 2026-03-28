@@ -30,11 +30,11 @@ export function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-16 lg:py-20"
+      className="relative overflow-hidden bg-gradient-to-br from-accent via-accent to-amber-600 py-16 lg:py-20"
     >
       {/* Decorative elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(217,119,6,0.1),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(217,119,6,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1),transparent_50%)]" />
       
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div
@@ -42,10 +42,10 @@ export function CTASection() {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl lg:text-5xl">
+          <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Potrebujete novo streho?
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-primary-foreground/90 lg:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-white/90 lg:text-xl">
             Pridobite brezplačno ponudbo še danes! Naši strokovnjaki vam bodo 
             pripravili personalizirano oceno stroškov brez obveznosti.
           </p>
@@ -53,7 +53,7 @@ export function CTASection() {
             <Button
               asChild
               size="lg"
-              className="bg-accent text-accent-foreground shadow-lg transition-all hover:bg-accent/90 hover:scale-105 hover:shadow-xl"
+              className="bg-primary text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-xl"
             >
               <Link href="/kontakt" className="inline-flex items-center gap-2 text-lg px-8 py-6">
                 Pridobite brezplačno ponudbo

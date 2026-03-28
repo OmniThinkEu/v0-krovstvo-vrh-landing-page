@@ -80,10 +80,7 @@ export function Footer() {
 
           {/* Google Maps Placeholder */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider">
-              Lokacija
-            </h3>
-            <div className="mt-4 aspect-square w-full overflow-hidden rounded-lg border border-primary-foreground/20 bg-primary-foreground/10">
+            <div className="aspect-square w-full overflow-hidden rounded-lg border border-primary-foreground/20 bg-primary-foreground/10 transition-all duration-300 hover:border-primary-foreground/40">
               <div className="flex h-full flex-col items-center justify-center gap-3 p-4 text-center">
                 <div className="flex size-12 items-center justify-center rounded-full bg-primary-foreground/20">
                   <MapPin className="size-6 text-primary-foreground" />

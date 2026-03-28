@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -13,15 +14,18 @@ import {
 } from "@/components/ui/sheet"
 
 const navLinks = [
-  { label: "Domov", href: "#domov", type: "anchor" },
-  { label: "Storitve", href: "#storitve", type: "anchor" },
-  { label: "Pogosta vprašanja", href: "#faq", type: "anchor" },
-  { label: "Kontakt", href: "/kontakt", type: "link" },
+  { label: "Domov", href: "#domov", anchor: "domov" },
+  { label: "Storitve", href: "#storitve", anchor: "storitve" },
+  { label: "Pogosta vprašanja", href: "#faq", anchor: "faq" },
+  { label: "Kontakt", href: "/kontakt", anchor: null },
 ]
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHomePage = pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,14 +35,26 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
     e.preventDefault()
-    const targetId = href.replace("#", "")
-    const element = document.getElementById(targetId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
     setIsOpen(false)
+
+    // If it's the contact link, navigate directly
+    if (link.anchor === null) {
+      router.push(link.href)
+      return
+    }
+
+    // If we're on the home page, scroll to the section
+    if (isHomePage) {
+      const element = document.getElementById(link.anchor)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
+    } else {
+      // If we're on another page, navigate to home page with the anchor
+      router.push(`/#${link.anchor}`)
+    }
   }
 
   return (
@@ -53,8 +69,13 @@ export function Header() {
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Logo */}
           <Link
-            href="#domov"
-            onClick={(e) => handleAnchorClick(e, "#domov")}
+            href="/"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }
+            }}
             className="flex items-center gap-2"
           >
             <span className="text-xl font-bold tracking-tight text-primary lg:text-2xl">
@@ -64,26 +85,16 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((link) =>
-              link.type === "anchor" ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleAnchorClick(e, link.href)}
-                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.anchor ? `/#${link.anchor}` : link.href}
+                onClick={(e) => handleNavClick(e, link)}
+                className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
           {/* Desktop CTA */}
@@ -112,27 +123,16 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
               <nav className="mt-8 flex flex-col gap-4">
-                {navLinks.map((link) =>
-                  link.type === "anchor" ? (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={(e) => handleAnchorClick(e, link.href)}
-                      className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                )}
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.anchor ? `/#${link.anchor}` : link.href}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                ))}
                 <Button
                   asChild
                   className="mt-4 w-full bg-accent text-accent-foreground hover:bg-accent/90"
