@@ -85,23 +85,31 @@ export function ServicesDetail() {
             <div
               key={service.title}
               data-animate-row
-              className={`flex flex-col items-center gap-8 opacity-0 duration-700 lg:gap-12 ${
+              className={`group flex flex-col items-center gap-8 opacity-0 duration-700 lg:gap-12 ${
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               }`}
             >
               {/* Image Placeholder */}
-              <div className="flex-1 w-full">
-                <div className="aspect-video w-full rounded-xl bg-muted flex items-center justify-center border border-border">
+              <div className={`flex-1 w-full transition-transform duration-500 ${
+                index % 2 === 0 
+                  ? "lg:group-hover:translate-x-2" 
+                  : "lg:group-hover:-translate-x-2"
+              }`}>
+                <div className="aspect-video w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-accent/5 flex items-center justify-center border border-border shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:border-accent/30">
                   <div className="flex flex-col items-center gap-3 text-muted-foreground">
-                    <ImageIcon className="size-12" />
-                    <span className="text-sm font-medium">{service.imageAlt}</span>
+                    <ImageIcon className="size-12 text-primary/40" />
+                    <span className="text-sm font-medium text-primary/60">{service.imageAlt} - placeholder</span>
                   </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground">
+              <div className={`flex-1 transition-transform duration-500 ${
+                index % 2 === 0 
+                  ? "lg:group-hover:-translate-x-2" 
+                  : "lg:group-hover:translate-x-2"
+              }`}>
+                <h3 className="text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
                   {service.title}
                 </h3>
                 <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
@@ -109,7 +117,7 @@ export function ServicesDetail() {
                 </p>
                 <ul className="mt-6 flex flex-col gap-3">
                   {service.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-start gap-3">
+                    <li key={benefit} className="flex items-start gap-3 transition-transform duration-300 hover:translate-x-1">
                       <Check className="mt-0.5 size-5 shrink-0 text-accent" />
                       <span className="text-foreground">{benefit}</span>
                     </li>

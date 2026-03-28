@@ -73,24 +73,25 @@ export function Testimonials() {
             <Card
               key={index}
               data-animate-card
-              className="opacity-0 duration-500 transition-all hover:shadow-md hover:-translate-y-1"
+              className="group opacity-0 duration-500 transition-all hover:shadow-xl hover:-translate-y-2 hover:border-accent/30 bg-gradient-to-br from-card to-accent/5"
             >
               <CardContent className="pt-6">
                 <div className="flex gap-1">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star
                       key={i}
-                      className="size-5 fill-accent text-accent"
+                      className="size-5 fill-accent text-accent transition-transform duration-300 group-hover:scale-110"
+                      style={{ transitionDelay: `${i * 50}ms` }}
                     />
                   ))}
                 </div>
-                <p className="mt-4 leading-relaxed text-muted-foreground">
+                <p className="mt-4 leading-relaxed text-muted-foreground transition-opacity duration-300 group-hover:text-foreground/80">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="border-t border-border/50 bg-muted/30">
                 <div>
-                  <p className="font-semibold text-foreground">
+                  <p className="font-semibold text-foreground transition-colors group-hover:text-primary">
                     {testimonial.name}
                   </p>
                   <p className="text-sm text-muted-foreground">

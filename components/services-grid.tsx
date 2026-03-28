@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Home, Wrench, RefreshCw, Thermometer, Hammer, Droplets } from "lucide-react"
+import Link from "next/link"
+import { Home, Wrench, RefreshCw, Thermometer, Hammer, Droplets, ArrowRight } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
 const services = [
@@ -9,31 +10,37 @@ const services = [
     icon: Home,
     title: "Montaža novih streh",
     description: "Celovita montaža novih strešnih konstrukcij s kvalitetnimi materiali in strokovno izvedbo.",
+    href: "#storitve-podrobno",
   },
   {
     icon: Wrench,
     title: "Obnova in sanacija",
     description: "Temeljita obnova obstoječih streh z zamenjavo poškodovanih elementov.",
+    href: "#storitve-podrobno",
   },
   {
     icon: RefreshCw,
     title: "Zamenjava kritine",
     description: "Zamenjava stare kritine z novo, izbira med različnimi materiali in barvami.",
+    href: "#storitve-podrobno",
   },
   {
     icon: Thermometer,
     title: "Izolacija in zateplitev",
     description: "Profesionalna toplotna izolacija za energetsko učinkovit dom.",
+    href: "#storitve-podrobno",
   },
   {
     icon: Hammer,
     title: "Popravila in vzdrževanje",
     description: "Hitra in zanesljiva popravila ter redno vzdrževanje vaše strehe.",
+    href: "#storitve-podrobno",
   },
   {
     icon: Droplets,
     title: "Odvod vode - žlebovi",
     description: "Montaža in popravilo žlebov ter odtočnih cevi za učinkovit odvod vode.",
+    href: "#storitve-podrobno",
   },
 ]
 
@@ -84,29 +91,32 @@ export function ServicesGrid() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <Card
+            <a
               key={service.title}
-              data-animate-card
-              className="opacity-0 duration-500 transition-all hover:shadow-md hover:scale-[1.02]"
+              href={service.href}
+              className="group block"
             >
-              <CardHeader>
-                <div className="mb-2 flex size-12 items-center justify-center rounded-lg bg-primary/10">
-                  <service.icon className="size-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg">{service.title}</CardTitle>
-                <CardDescription className="leading-relaxed">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <a
-                  href="#storitve-podrobno"
-                  className="text-sm font-medium text-accent hover:underline"
-                >
-                  Več o storitvi
-                </a>
-              </CardContent>
-            </Card>
+              <Card
+                data-animate-card
+                className="h-full opacity-0 duration-500 transition-all hover:shadow-lg hover:scale-[1.02] hover:border-accent/50 group-hover:bg-accent/5"
+              >
+                <CardHeader>
+                  <div className="mb-2 flex size-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-accent/20">
+                    <service.icon className="size-6 text-primary transition-colors group-hover:text-accent" />
+                  </div>
+                  <CardTitle className="text-lg transition-colors group-hover:text-accent">{service.title}</CardTitle>
+                  <CardDescription className="leading-relaxed">
+                    {service.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-all group-hover:gap-3">
+                    Več o storitvi
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </CardContent>
+              </Card>
+            </a>
           ))}
         </div>
       </div>

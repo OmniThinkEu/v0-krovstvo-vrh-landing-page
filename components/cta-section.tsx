@@ -30,30 +30,34 @@ export function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-primary py-16 lg:py-20"
+      className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-16 lg:py-20"
     >
-      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(217,119,6,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(217,119,6,0.1),transparent_50%)]" />
+      
+      <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div
           className={`transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+          <h2 className="text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl lg:text-5xl">
             Potrebujete novo streho?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-pretty text-lg text-primary-foreground/80">
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-primary-foreground/90 lg:text-xl">
             Pridobite brezplačno ponudbo še danes! Naši strokovnjaki vam bodo 
             pripravili personalizirano oceno stroškov brez obveznosti.
           </p>
-          <div className="mt-8">
+          <div className="mt-10">
             <Button
               asChild
               size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
+              className="bg-accent text-accent-foreground shadow-lg transition-all hover:bg-accent/90 hover:scale-105 hover:shadow-xl"
             >
-              <Link href="/kontakt" className="inline-flex items-center gap-2">
+              <Link href="/kontakt" className="inline-flex items-center gap-2 text-lg px-8 py-6">
                 Pridobite brezplačno ponudbo
-                <ArrowRight className="size-5" />
+                <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

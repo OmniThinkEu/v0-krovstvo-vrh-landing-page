@@ -73,11 +73,11 @@ function Counter({
   }, [inView, target, isText])
 
   if (isText) {
-    return <span className="text-3xl font-bold text-primary lg:text-4xl">{label}</span>
+    return <span className="text-3xl font-bold text-accent lg:text-4xl">{label}</span>
   }
 
   return (
-    <span className="text-3xl font-bold text-primary lg:text-4xl">
+    <span className="text-3xl font-bold text-accent lg:text-4xl">
       {count}
       {suffix}
     </span>
@@ -123,13 +123,14 @@ export function Benefits() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((benefit) => (
+          {benefits.map((benefit, index) => (
             <div
               key={benefit.label}
-              className="flex flex-col items-center text-center"
+              className="group flex flex-col items-center rounded-xl bg-primary-foreground/5 p-6 text-center transition-all duration-300 hover:bg-primary-foreground/10 hover:scale-105"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="flex size-16 items-center justify-center rounded-full bg-primary-foreground/10">
-                <benefit.icon className="size-8 text-primary-foreground" />
+              <div className="flex size-16 items-center justify-center rounded-full bg-accent/20 transition-colors group-hover:bg-accent/30">
+                <benefit.icon className="size-8 text-accent" />
               </div>
               <div className="mt-4">
                 <Counter
@@ -145,7 +146,7 @@ export function Benefits() {
                   {benefit.label}
                 </p>
               )}
-              <p className="mt-2 text-sm text-primary-foreground/70">
+              <p className="mt-2 text-sm text-primary-foreground/80">
                 {benefit.description}
               </p>
             </div>

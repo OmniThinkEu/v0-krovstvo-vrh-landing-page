@@ -92,16 +92,29 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Image Placeholder */}
+          {/* Image Placeholder with CTA */}
           <div
             data-animate
             className="flex flex-1 items-center justify-center opacity-0 duration-700"
             style={{ animationDelay: "200ms" }}
           >
-            <div className="aspect-[4/3] w-full max-w-lg rounded-xl bg-muted flex items-center justify-center border border-border">
-              <div className="flex flex-col items-center gap-3 text-muted-foreground">
-                <ImageIcon className="size-16" />
-                <span className="text-sm font-medium">Slika strehe</span>
+            <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-border shadow-lg transition-all duration-300 hover:shadow-xl">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+                <ImageIcon className="size-16 text-primary/40" />
+                <span className="text-sm font-medium text-primary/60">Slika strehe - placeholder</span>
+              </div>
+              {/* CTA Overlay */}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-primary/70 p-6">
+                <p className="text-sm font-medium text-primary-foreground/90">Potrebujete novo streho?</p>
+                <Button
+                  asChild
+                  size="lg"
+                  className="mt-3 w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-md"
+                >
+                  <a href="/kontakt">
+                    Pridobite brezplačno ponudbo
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
