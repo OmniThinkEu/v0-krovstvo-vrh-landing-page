@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { MapPin } from "lucide-react"
 
 const serviceLinks = [
   { label: "Montaža streh", href: "#storitve" },
@@ -42,22 +43,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact - Reordered: Email, Phone, Address, Form link */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Kontakt
             </h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/70">
-              <li>Dunajska cesta 123</li>
-              <li>1000 Ljubljana</li>
-              <li>
-                <a
-                  href="tel:+38612345678"
-                  className="transition-colors hover:text-primary-foreground"
-                >
-                  +386 1 234 5678
-                </a>
-              </li>
               <li>
                 <a
                   href="mailto:info@krovstvo-vrh.si"
@@ -66,28 +57,45 @@ export function Footer() {
                   info@krovstvo-vrh.si
                 </a>
               </li>
+              <li>
+                <a
+                  href="tel:+38612345678"
+                  className="transition-colors hover:text-primary-foreground"
+                >
+                  +386 1 234 5678
+                </a>
+              </li>
+              <li>Dunajska cesta 123</li>
+              <li>1000 Ljubljana</li>
+              <li className="mt-2">
+                <Link
+                  href="/kontakt"
+                  className="font-medium text-accent transition-colors hover:text-accent/80"
+                >
+                  Pošljite povpraševanje &rarr;
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Working Hours */}
+          {/* Google Maps Placeholder */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
-              Delovni čas
+              Lokacija
             </h3>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/70">
-              <li className="flex justify-between">
-                <span>Pon - Pet</span>
-                <span>7:00 - 17:00</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Sobota</span>
-                <span>8:00 - 12:00</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Nedelja</span>
-                <span>Zaprto</span>
-              </li>
-            </ul>
+            <div className="mt-4 aspect-square w-full overflow-hidden rounded-lg border border-primary-foreground/20 bg-primary-foreground/10">
+              <div className="flex h-full flex-col items-center justify-center gap-3 p-4 text-center">
+                <div className="flex size-12 items-center justify-center rounded-full bg-primary-foreground/20">
+                  <MapPin className="size-6 text-primary-foreground" />
+                </div>
+                <p className="text-xs text-primary-foreground/60">
+                  Google Maps
+                </p>
+                <p className="text-xs text-primary-foreground/40">
+                  Dunajska cesta 123, Ljubljana
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

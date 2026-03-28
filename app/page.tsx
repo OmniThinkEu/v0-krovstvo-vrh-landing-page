@@ -6,7 +6,8 @@ import { ServicesDetail } from "@/components/services-detail"
 import { Benefits } from "@/components/benefits"
 import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
-import { ContactForm } from "@/components/contact-form"
+import { ContactInfo } from "@/components/contact-info"
+import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -21,7 +22,8 @@ export default function Home() {
         <Benefits />
         <Testimonials />
         <FAQ />
-        <ContactForm />
+        <ContactInfo />
+        <CTASection />
       </main>
       <Footer />
     </>

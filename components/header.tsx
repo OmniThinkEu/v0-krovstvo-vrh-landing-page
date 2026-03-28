@@ -13,10 +13,10 @@ import {
 } from "@/components/ui/sheet"
 
 const navLinks = [
-  { label: "Domov", href: "#domov" },
-  { label: "Storitve", href: "#storitve" },
-  { label: "Pogosta vprašanja", href: "#faq" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Domov", href: "#domov", type: "anchor" },
+  { label: "Storitve", href: "#storitve", type: "anchor" },
+  { label: "Pogosta vprašanja", href: "#faq", type: "anchor" },
+  { label: "Kontakt", href: "/kontakt", type: "link" },
 ]
 
 export function Header() {
@@ -31,7 +31,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const targetId = href.replace("#", "")
     const element = document.getElementById(targetId)
@@ -54,7 +54,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="#domov"
-            onClick={(e) => handleNavClick(e, "#domov")}
+            onClick={(e) => handleAnchorClick(e, "#domov")}
             className="flex items-center gap-2"
           >
             <span className="text-xl font-bold tracking-tight text-primary lg:text-2xl">
@@ -64,16 +64,26 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.type === "anchor" ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
+                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Desktop CTA */}
@@ -82,12 +92,9 @@ export function Header() {
               asChild
               className="bg-accent text-accent-foreground hover:bg-accent/90"
             >
-              <a
-                href="#kontakt"
-                onClick={(e) => handleNavClick(e, "#kontakt")}
-              >
+              <Link href="/kontakt">
                 Brezplačna ponudba
-              </a>
+              </Link>
             </Button>
           </div>
 
@@ -105,26 +112,34 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
               <nav className="mt-8 flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link) =>
+                  link.type === "anchor" ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => handleAnchorClick(e, link.href)}
+                      className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
                 <Button
                   asChild
                   className="mt-4 w-full bg-accent text-accent-foreground hover:bg-accent/90"
                 >
-                  <a
-                    href="#kontakt"
-                    onClick={(e) => handleNavClick(e, "#kontakt")}
-                  >
+                  <Link href="/kontakt" onClick={() => setIsOpen(false)}>
                     Brezplačna ponudba
-                  </a>
+                  </Link>
                 </Button>
               </nav>
             </SheetContent>
