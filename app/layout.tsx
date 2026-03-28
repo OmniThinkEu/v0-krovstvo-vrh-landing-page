@@ -1,15 +1,29 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'Krovstvo Vrh | Strokovnjaki za strehe v Ljubljani',
+  description: 'Zaupajte svojo streho strokovnjakom z več kot 20-letnimi izkušnjami. Montaža, obnova in vzdrževanje streh v Ljubljani in okolici. Brezplačen ogled in ponudba.',
+  keywords: 'krovstvo, streha, Ljubljana, montaža strehe, obnova strehe, krovci, zamenjava kritine, izolacija strehe',
+  authors: [{ name: 'Krovstvo Vrh' }],
+  openGraph: {
+    title: 'Krovstvo Vrh | Strokovnjaki za strehe v Ljubljani',
+    description: 'Zaupajte svojo streho strokovnjakom z več kot 20-letnimi izkušnjami. Montaža, obnova in vzdrževanje streh v Ljubljani in okolici.',
+    type: 'website',
+    locale: 'sl_SI',
+    siteName: 'Krovstvo Vrh',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [
       {
@@ -29,13 +43,19 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  themeColor: '#1E3A5F',
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="sl" className={inter.variable}>
       <body className="font-sans antialiased">
         {children}
         <Analytics />
