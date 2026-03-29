@@ -10,22 +10,30 @@ export default function FAQPage() {
     <>
       <Header />
       <main className="pt-20">
-        <section className="bg-primary/5 py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+        <section className="relative overflow-hidden bg-primary py-24 lg:py-32">
+          {/* Background Image */}
+          <img 
+            src="/faq-bg.jpg" 
+            alt="FAQ Background" 
+            className="absolute inset-0 h-full w-full object-cover grayscale-[0.5]"
+          />
+          <div className="absolute inset-0 bg-primary/90 backdrop-blur-[2px]" />
+          
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-primary-foreground">
+            <h1 className="text-balance text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl drop-shadow-lg">
               Pogosta vprašanja
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground lg:text-xl leading-relaxed">
+            <p className="mx-auto mt-8 max-w-2xl text-pretty text-xl text-primary-foreground/90 lg:text-2xl leading-relaxed">
               Tukaj boste našli odgovore na vsa vprašanja o naših storitvah, 
               postopku krovstva, materialih in garanciji.
             </p>
             
-            {/* Search Bar - Aesthetic addition */}
-            <div className="mt-10 mx-auto max-w-lg relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground transition-colors group-focus-within:text-accent" />
+            {/* Search Bar */}
+            <div className="mt-12 mx-auto max-w-xl relative group">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 size-6 text-muted-foreground transition-colors group-focus-within:text-accent" />
               <Input 
                 placeholder="Iščite po vprašanjih..." 
-                className="h-14 pl-12 rounded-full border-border bg-background shadow-lg transition-all focus:ring-accent focus:border-accent"
+                className="h-16 pl-14 rounded-full border-none bg-background/95 text-foreground shadow-2xl transition-all focus:ring-4 focus:ring-accent/50 text-lg"
               />
             </div>
           </div>

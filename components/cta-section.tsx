@@ -30,35 +30,56 @@ export function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-br from-accent via-accent to-amber-600 py-16 lg:py-20"
+      className="relative overflow-hidden bg-accent py-20 lg:py-28"
     >
-      {/* Decorative elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1),transparent_50%)]" />
+      {/* Background Image */}
+      <img 
+        src="/cta-bg.jpg" 
+        alt="Krovstvo Vrh Background" 
+        className="absolute inset-0 h-full w-full object-cover grayscale-[0.3]"
+      />
+      
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/95 via-accent/80 to-amber-600/90" />
+      
+      {/* Decorative dots */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
       
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div
-          className={`transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          className={`transition-all duration-1000 transform ${
+            isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95"
           }`}
         >
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Potrebujete novo streho?
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md mb-8 border border-white/20">
+            Pripravljeni na novo streho?
+          </div>
+          <h2 className="text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl drop-shadow-lg">
+            Zagotovite si varno streho nad glavo
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-white/90 lg:text-xl">
-            Pridobite brezplačno ponudbo še danes! Naši strokovnjaki vam bodo 
-            pripravili personalizirano oceno stroškov brez obveznosti.
+          <p className="mx-auto mt-8 max-w-2xl text-pretty text-xl text-white/90 lg:text-2xl leading-relaxed">
+            Kontaktirajte nas za brezplačen ogled in strokovno ponudbo. Naša ekipa vam bo pomagala najti optimalno rešitev za vaš dom.
           </p>
-          <div className="mt-10">
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-6">
             <Button
               asChild
               size="lg"
-              className="bg-primary text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-xl"
+              className="bg-primary text-primary-foreground shadow-2xl transition-all hover:bg-primary/90 hover:scale-110 hover:-rotate-1 active:scale-95 h-16 px-10 text-xl font-bold"
             >
-              <Link href="/kontakt" className="inline-flex items-center gap-2 text-lg px-8 py-6">
-                Pridobite brezplačno ponudbo
-                <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+              <Link href="/kontakt" className="inline-flex items-center gap-2">
+                Brezplačna ponudba
+                <ArrowRight className="size-6 transition-transform group-hover:translate-x-1" />
               </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white text-white hover:bg-white/10 h-16 px-10 text-xl font-bold backdrop-blur-sm"
+            >
+              <a href="tel:+38612345678">
+                Pokličite nas takoj
+              </a>
             </Button>
           </div>
         </div>

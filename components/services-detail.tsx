@@ -14,6 +14,7 @@ const servicesDetail = [
       "Garancija na izvedbo do 10 let",
       "Čista in urejena gradbišča",
     ],
+    image: "/uploaded/image_5.png",
     imageAlt: "Montaža nove strehe",
   },
   {
@@ -26,6 +27,7 @@ const servicesDetail = [
       "Izboljšanje hidroizolacije",
       "Energetska optimizacija",
     ],
+    image: "/uploaded/image_4.png",
     imageAlt: "Obnova strehe",
   },
   {
@@ -38,6 +40,7 @@ const servicesDetail = [
       "Hitra in čista izvedba",
       "Dolgotrajna obstojnost",
     ],
+    image: "/uploaded/image_6.png",
     imageAlt: "Zamenjava kritine",
   },
 ]
@@ -89,16 +92,33 @@ export function ServicesDetail() {
                 index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               }`}
             >
-              {/* Image Placeholder */}
-              <div className={`flex-1 w-full transition-transform duration-500 ${
+              {/* Image Content */}
+              <div className={`flex-1 w-full transition-all duration-700 overflow-hidden rounded-3xl shadow-2xl border border-border group relative ${
                 index % 2 === 0 
-                  ? "lg:group-hover:translate-x-2" 
-                  : "lg:group-hover:-translate-x-2"
+                  ? "lg:group-hover:translate-x-6" 
+                  : "lg:group-hover:-translate-x-6"
               }`}>
-                <div className="aspect-video w-full overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 to-accent/5 flex items-center justify-center border border-border shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:border-accent/30">
-                  <div className="flex flex-col items-center gap-3 text-muted-foreground">
-                    <ImageIcon className="size-12 text-primary/40" />
-                    <span className="text-sm font-medium text-primary/60">{service.imageAlt} - placeholder</span>
+                <div className="aspect-[16/10] w-full relative bg-muted flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.imageAlt} 
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 z-10"
+                    onError={(e) => {
+                      // Fallback if image not found
+                      (e.target as HTMLImageElement).classList.add("hidden");
+                    }}
+                  />
+                  {/* Fallback Icon & Branding */}
+                  <div className="flex flex-col items-center gap-4 text-primary/30 z-0">
+                    <Check className="size-20" />
+                    <p className="text-xl font-bold uppercase tracking-widest">{service.title}</p>
+                    <p className="text-sm font-medium">Strokovna izvedba Krovstvo Vrh</p>
+                  </div>
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-20" />
+                  <div className="absolute bottom-10 left-10 opacity-0 translate-y-6 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 z-30">
+                    <p className="text-white font-extrabold text-2xl drop-shadow-lg">{service.title}</p>
+                    <p className="text-white/80 text-lg font-medium">Krovstvo Vrh d.o.o.</p>
                   </div>
                 </div>
               </div>

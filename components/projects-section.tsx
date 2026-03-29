@@ -8,6 +8,8 @@ const projects = [
     title: "Celovita obnova stanovanjske hiše",
     location: "Ljubljana",
     description: "Zamenjava stare opečne kritine z novo sodobno kritino Tondach. Dodana je bila 20 cm izolacija in novi žlebovi.",
+    beforeImage: "/projekti/roof-1-before.png",
+    afterImage: "/projekti/roof-1-after.png",
     beforePlaceholder: "Pred obnovo",
     afterPlaceholder: "Po obnovi",
   },
@@ -15,6 +17,8 @@ const projects = [
     title: "Novogradnja z ravno streho",
     location: "Domžale",
     description: "Montaža sodobne PVC folije za ravne strehe z vrhunsko toplotno izolacijo in odvodnjavanjem.",
+    beforeImage: "/projekti/roof-2-before.png",
+    afterImage: "/projekti/roof-2-after.png",
     beforePlaceholder: "Med gradnjo",
     afterPlaceholder: "Končan objekt",
   },
@@ -22,6 +26,8 @@ const projects = [
     title: "Sanacija strehe na gospodarskem objektu",
     location: "Vrhnika",
     description: "Hitra in učinkovita sanacija poškodovane kritine po neurju z uporabo pločevinaste kritine Gerard.",
+    beforeImage: "/projekti/roof-3-before.png",
+    afterImage: "/uploaded/image_3.png",
     beforePlaceholder: "Poškodovana streha",
     afterPlaceholder: "Sanirano stanje",
   },
@@ -89,21 +95,25 @@ export function ProjectsSection() {
               <div className="flex-1">
                 <div className="relative grid grid-cols-2 gap-4 rounded-xl border border-border bg-muted/30 p-4 shadow-xl transition-transform duration-500 hover:scale-[1.02]">
                   {/* Before */}
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-muted-foreground/10 border border-border/50">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center">
-                      <ImageIcon className="size-12 text-muted-foreground/30" />
-                      <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">{project.beforePlaceholder}</span>
-                    </div>
-                    <div className="absolute bottom-4 left-4 rounded bg-background/80 px-2 py-1 text-[10px] font-bold text-foreground backdrop-blur-sm">PRED</div>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-muted-foreground/10 border border-border/50 group">
+                    <img 
+                      src={project.beforeImage} 
+                      alt={project.beforePlaceholder} 
+                      className="absolute inset-0 h-full w-full object-cover grayscale-[0.2] transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/20" />
+                    <div className="absolute bottom-4 left-4 rounded bg-background/90 px-2 py-1 text-[10px] font-bold text-foreground backdrop-blur-sm shadow-sm">PRED</div>
                   </div>
                   
                   {/* After */}
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-accent/20 border border-accent/20">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center">
-                      <ImageIcon className="size-16 text-accent/40" />
-                      <span className="text-xs font-bold uppercase tracking-widest text-accent/60">{project.afterPlaceholder}</span>
-                    </div>
-                    <div className="absolute bottom-4 left-4 rounded bg-accent px-2 py-1 text-[10px] font-bold text-accent-foreground shadow-sm">PO POSEGU</div>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-accent/20 border border-accent/20 group">
+                    <img 
+                      src={project.afterImage} 
+                      alt={project.afterPlaceholder} 
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-accent/10" />
+                    <div className="absolute bottom-4 left-4 rounded bg-accent px-2 py-1 text-[10px] font-bold text-accent-foreground shadow-lg">PO POSEGU</div>
                   </div>
                 </div>
               </div>

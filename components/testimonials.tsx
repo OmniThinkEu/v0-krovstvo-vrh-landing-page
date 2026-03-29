@@ -12,30 +12,35 @@ const testimonials = [
     location: "Ljubljana",
     rating: 5,
     text: "Odlična ekipa! Streho so nam zamenjali v rekordnem času in pri tem pustili gradbišče popolnoma čisto. Priporočam vsem, ki iščejo zanesljive krovce.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
   },
   {
     name: "Janez P.",
     location: "Domžale",
     rating: 5,
     text: "Po dolgem iskanju smo končno našli strokovnjake, ki so resnično vedeli, kaj delajo. Izolacija strehe je bila izvedena brezhibno.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
   },
   {
     name: "Ana M.",
     location: "Kamnik",
     rating: 5,
     text: "Zelo profesionalen pristop od prvega klica do končne izvedbe. Brezplačen ogled in natančna ponudba brez skritih stroškov.",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
   },
   {
     name: "Peter S.",
     location: "Kranj",
     rating: 5,
     text: "Hitro in učinkovito delo. Ekipa je bila prijazna in komunikacija odlična. Naša nova streha je popolna!",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
   },
   {
     name: "Mojca R.",
     location: "Vrhnika",
     rating: 5,
     text: "Že drugič smo sodelovali z njimi in ponovno smo navdušeni. Kvalitetno delo in korektni odnosi.",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
   },
 ]
 
@@ -110,13 +115,22 @@ export function Testimonials() {
                       </p>
                     </CardContent>
                     <CardFooter className="border-t border-border/50 bg-muted/30 pt-6">
-                      <div>
-                        <p className="font-bold text-foreground">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.location}
-                        </p>
+                      <div className="flex items-center gap-4">
+                        <div className="size-12 overflow-hidden rounded-full border-2 border-accent/20">
+                          <img 
+                            src={testimonial.avatar} 
+                            alt={testimonial.name} 
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                        <div>
+                          <p className="font-bold text-foreground">
+                            {testimonial.name}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {testimonial.location}
+                          </p>
+                        </div>
                       </div>
                     </CardFooter>
                   </Card>

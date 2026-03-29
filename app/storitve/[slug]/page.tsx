@@ -11,6 +11,7 @@ const servicesData: Record<string, any> = {
   montaza: {
     title: "Montaža novih streh",
     description: "Celovita montaža novih strešnih konstrukcij s kvalitetnimi materiali in strokovno izvedbo. Zagotavljamo dolgoročno varnost in estetski izgled vašega doma.",
+    image: "/uploaded/image_5.png",
     features: [
       "Svetovanje pri izbiri kritine",
       "Priprava konstrukcije",
@@ -21,6 +22,7 @@ const servicesData: Record<string, any> = {
   obnova: {
     title: "Obnova in sanacija",
     description: "Temeljita obnova obstoječih streh z zamenjavo poškodovanih elementov. Podaljšujemo življenjsko dobo vaše strehe z uporabo sodobnih tehnik.",
+    image: "/uploaded/image_4.png",
     features: [
       "Pregled stanja strehe",
       "Sanacija konstrukcije",
@@ -31,6 +33,7 @@ const servicesData: Record<string, any> = {
   zamenjava: {
     title: "Zamenjava kritine",
     description: "Zamenjava stare kritine z novo, izbira med različnimi materiali in barvami. Izboljšujemo vizualno podobo in zaščito vašega objekta.",
+    image: "/uploaded/image_6.png",
     features: [
       "Odstranitev stare kritine",
       "Sanacija letvanja",
@@ -41,6 +44,7 @@ const servicesData: Record<string, any> = {
   izolacija: {
     title: "Izolacija in zateplitev",
     description: "Profesionalna toplotna izolacija za energetsko učinkovit dom. Zmanjšajte stroške ogrevanja in hkrati izboljšajte bivalno ugodje.",
+    image: "/uploaded/image.png",
     features: [
       "Vgradnja parne zapore",
       "Izolacija med špirovci",
@@ -51,6 +55,7 @@ const servicesData: Record<string, any> = {
   popravila: {
     title: "Popravila in vzdrževanje",
     description: "Hitra in zanesljiva popravila ter redno vzdrževanje vaše strehe. Preprečujemo večje poškodbe z rednim pregledovanjem in nujnimi posegi.",
+    image: "/uploaded/image_7.png",
     features: [
       "Popravila obrob in žlebov",
       "Menjava posameznih strešnikov",
@@ -61,6 +66,7 @@ const servicesData: Record<string, any> = {
   zlebovi: {
     title: "Odvod vode - žlebovi",
     description: "Montaža in popravilo žlebov ter odtočnih cevi za učinkovit odvod vode. Preprečujemo zamakanje fasade in temeljev vašega doma.",
+    image: "/uploaded/image_1.png",
     features: [
       "Montaža bakrenih žlebov",
       "Montaža barvnih pločevinastih žlebov",
@@ -110,14 +116,17 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div className="lg:w-1/2 rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5 border border-border aspect-[4/3] shadow-2xl relative">
-                  <div className="absolute inset-0 flex items-center justify-center p-8 text-center text-primary/40">
-                    <div>
-                        <CheckCircle2 className="size-24 mx-auto mb-4" />
-                        <p className="text-2xl font-bold uppercase tracking-widest">{service.title}</p>
-                        <p className="mt-2 text-sm font-medium">Naša strokovna izvedba</p>
-                    </div>
+              {/* Visual Content */}
+              <div className="lg:w-1/2 rounded-3xl overflow-hidden bg-muted border border-border aspect-[4/3] shadow-2xl relative group">
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute bottom-6 left-6 opacity-0 translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                    <p className="text-white font-bold text-lg">Strokovno izvedeno delo</p>
+                    <p className="text-white/80 text-sm">Krovstvo Vrh d.o.o.</p>
                   </div>
               </div>
             </div>

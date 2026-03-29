@@ -326,14 +326,24 @@ export function ContactFormPage() {
       {/* Map Section */}
       <section className="py-16 lg:py-24 bg-muted/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-3xl border border-border shadow-2xl aspect-[21/9]">
-             <div className="flex h-full flex-col items-center justify-center gap-6 p-12 text-center bg-muted/50">
-                <MapPin className="size-16 text-primary shadow-sm" />
+          <div className="overflow-hidden rounded-3xl border border-border shadow-2xl aspect-[21/9] relative group">
+             <img 
+               src="/contact-map.jpg" 
+               alt="Lokacija Krovstvo Vrh v Ljubljani" 
+               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+             />
+             <div className="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:opacity-60" />
+             <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 p-12 text-center text-white">
+                <MapPin className="size-16 text-accent drop-shadow-lg" />
                 <div>
-                  <h3 className="text-2xl font-bold">Najdete nas v Ljubljani</h3>
-                  <p className="mt-2 text-lg text-muted-foreground">Dunajska cesta 123, 1000 Ljubljana</p>
+                  <h3 className="text-3xl font-bold drop-shadow-md">Najdete nas v Ljubljani</h3>
+                  <p className="mt-2 text-xl font-medium drop-shadow-md text-white/90">Dunajska cesta 123, 1000 Ljubljana</p>
                 </div>
-                <Button variant="outline" className="rounded-full px-8">Odpri v Google Maps</Button>
+                <Button asChild className="rounded-full px-10 h-14 bg-accent text-lg font-bold text-accent-foreground shadow-xl transition-all hover:bg-accent/90 hover:scale-110">
+                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+                    Odpri v Google Maps
+                  </a>
+                </Button>
              </div>
           </div>
         </div>

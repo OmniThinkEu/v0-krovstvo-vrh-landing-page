@@ -101,24 +101,34 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Image Placeholder with CTA */}
+          {/* Image with CTA Overlay */}
           <div
             data-animate
             className="flex flex-1 items-center justify-center opacity-0 duration-700"
             style={{ animationDelay: "200ms" }}
           >
-            <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-border shadow-lg transition-all duration-300 hover:shadow-xl">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                <ImageIcon className="size-16 text-primary/40" />
-                <span className="text-sm font-medium text-primary/60">Slika strehe - placeholder</span>
+            <div className="group relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-2xl transition-all duration-500 hover:shadow-primary/10">
+              <img 
+                src="/hero-roof.jpg" 
+                alt="Kvalitetna streha Krovstvo Vrh" 
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 transition-opacity duration-500 group-hover:opacity-80" />
+              
+              {/* Floating Badge */}
+              <div className="absolute right-6 top-6 flex flex-col items-end gap-2">
+                <div className="rounded-full bg-accent px-4 py-1.5 text-xs font-bold text-accent-foreground shadow-lg backdrop-blur-sm">
+                  100% KAKOVOST
+                </div>
               </div>
+
               {/* CTA Overlay */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-primary/70 p-6">
-                <p className="text-sm font-medium text-primary-foreground/90">Potrebujete novo streho?</p>
+              <div className="absolute inset-x-0 bottom-0 p-8 transform transition-transform duration-500 group-hover:translate-y-[-8px]">
+                <p className="text-lg font-bold text-white drop-shadow-md">Vaša nova streha se začne tukaj</p>
                 <Button
                   asChild
                   size="lg"
-                  className="mt-3 w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-md"
+                  className="mt-4 w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl"
                 >
                   <a href="/kontakt">
                     Pridobite brezplačno ponudbo
