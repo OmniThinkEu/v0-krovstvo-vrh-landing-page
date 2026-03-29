@@ -9,20 +9,47 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Krovstvo Vrh | Strokovnjaki za strehe v Ljubljani',
-  description: 'Zaupajte svojo streho strokovnjakom z več kot 20-letnimi izkušnjami. Montaža, obnova in vzdrževanje streh v Ljubljani in okolici. Brezplačen ogled in ponudba.',
-  keywords: 'krovstvo, streha, Ljubljana, montaža strehe, obnova strehe, krovci, zamenjava kritine, izolacija strehe',
+  title: {
+    default: 'Krovstvo Vrh | Strokovnjaki za strehe v Ljubljani',
+    template: '%s | Krovstvo Vrh'
+  },
+  description: 'Profesionalno krovstvo z 20-letno tradicijo. Specializirani za montažo, obnovo in vzdrževanje streh v Ljubljani z okolico. Brezplačen ogled in strokovna ponudba.',
+  keywords: ['krovstvo', 'streha', 'Ljubljana', 'montaža strehe', 'obnova strehe', 'krovci', 'zamenjava kritine', 'izolacija strehe', 'stavbno kleparstvo', 'vzdrževanje streh'],
   authors: [{ name: 'Krovstvo Vrh' }],
+  creator: 'Krovstvo Vrh',
+  publisher: 'Krovstvo Vrh',
   openGraph: {
     title: 'Krovstvo Vrh | Strokovnjaki za strehe v Ljubljani',
     description: 'Zaupajte svojo streho strokovnjakom z več kot 20-letnimi izkušnjami. Montaža, obnova in vzdrževanje streh v Ljubljani in okolici.',
-    type: 'website',
-    locale: 'sl_SI',
+    url: 'https://krovstvo-vrh.si',
     siteName: 'Krovstvo Vrh',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Krovstvo Vrh - Strokovno krovstvo in kleparstvo',
+      },
+    ],
+    locale: 'sl_SI',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Krovstvo Vrh | Strokovnjaki za strehe v Ljubljani',
+    description: 'Več kot 20 let izkušenj pri montaži in obnovi streh. Zagotovite si varno streho nad glavo.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: [
