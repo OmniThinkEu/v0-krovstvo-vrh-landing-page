@@ -10,37 +10,37 @@ const services = [
     icon: Home,
     title: "Montaža novih streh",
     description: "Celovita montaža novih strešnih konstrukcij s kvalitetnimi materiali in strokovno izvedbo.",
-    href: "#storitve-podrobno",
+    href: "/storitve/montaza",
   },
   {
     icon: Wrench,
     title: "Obnova in sanacija",
     description: "Temeljita obnova obstoječih streh z zamenjavo poškodovanih elementov.",
-    href: "#storitve-podrobno",
+    href: "/storitve/obnova",
   },
   {
     icon: RefreshCw,
     title: "Zamenjava kritine",
     description: "Zamenjava stare kritine z novo, izbira med različnimi materiali in barvami.",
-    href: "#storitve-podrobno",
+    href: "/storitve/zamenjava",
   },
   {
     icon: Thermometer,
     title: "Izolacija in zateplitev",
     description: "Profesionalna toplotna izolacija za energetsko učinkovit dom.",
-    href: "#storitve-podrobno",
+    href: "/storitve/izolacija",
   },
   {
     icon: Hammer,
     title: "Popravila in vzdrževanje",
     description: "Hitra in zanesljiva popravila ter redno vzdrževanje vaše strehe.",
-    href: "#storitve-podrobno",
+    href: "/storitve/popravila",
   },
   {
     icon: Droplets,
     title: "Odvod vode - žlebovi",
     description: "Montaža in popravilo žlebov ter odtočnih cevi za učinkovit odvod vode.",
-    href: "#storitve-podrobno",
+    href: "/storitve/zlebovi",
   },
 ]
 

@@ -2,28 +2,17 @@ import Link from "next/link"
 import { MapPin } from "lucide-react"
 
 const serviceLinks = [
-  { label: "Montaža streh", href: "#storitve" },
-  { label: "Obnova strehe", href: "#storitve" },
-  { label: "Zamenjava kritine", href: "#storitve" },
-  { label: "Izolacija", href: "#storitve" },
+  { label: "Montaža streh", href: "/storitve/montaza" },
+  { label: "Obnova strehe", href: "/storitve/obnova" },
+  { label: "Zamenjava kritine", href: "/storitve/zamenjava" },
+  { label: "Izolacija", href: "/storitve/izolacija" },
 ]
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Logo & Description */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="text-2xl font-bold">
-              Krovstvo Vrh
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-primary-foreground/70">
-              Zanesljivi strokovnjaki za strehe z več kot 20-letnimi izkušnjami.
-              Montaža, obnova in vzdrževanje streh v Ljubljani in okolici.
-            </p>
-          </div>
-
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {/* Services */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
@@ -32,18 +21,18 @@ export function Footer() {
             <ul className="mt-4 flex flex-col gap-3">
               {serviceLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact - Reordered: Email, Phone, Address, Form link */}
+          {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Kontakt
@@ -80,15 +69,10 @@ export function Footer() {
 
           {/* Google Maps Placeholder */}
           <div>
-            <div className="aspect-square w-full overflow-hidden rounded-lg border border-primary-foreground/20 bg-primary-foreground/10 transition-all duration-300 hover:border-primary-foreground/40">
-              <div className="flex h-full flex-col items-center justify-center gap-3 p-4 text-center">
-                <div className="flex size-12 items-center justify-center rounded-full bg-primary-foreground/20">
-                  <MapPin className="size-6 text-primary-foreground" />
-                </div>
-                <p className="text-xs text-primary-foreground/60">
-                  Google Maps
-                </p>
-                <p className="text-xs text-primary-foreground/40">
+            <div className="aspect-[16/9] w-full overflow-hidden rounded-lg border border-primary-foreground/20 bg-primary-foreground/10 transition-all duration-300 hover:border-primary-foreground/40">
+              <div className="flex h-full flex-col items-center justify-center gap-2 p-4 text-center">
+                <MapPin className="size-6 text-primary-foreground/60" />
+                <p className="text-xs text-primary-foreground/60 font-medium">
                   Dunajska cesta 123, Ljubljana
                 </p>
               </div>
@@ -96,24 +80,38 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/20 pt-8 sm:flex-row">
-          <p className="text-sm text-primary-foreground/70">
-            &copy; {new Date().getFullYear()} Krovstvo Vrh. Vse pravice pridržane.
-          </p>
-          <div className="flex gap-6 text-sm">
-            <Link
-              href="/zasebnost"
-              className="text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-            >
-              Politika zasebnosti
-            </Link>
-            <Link
-              href="/piskotki"
-              className="text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-            >
-              Piškotki
-            </Link>
+        {/* Logo & Description - Full Width at Bottom */}
+        <div className="mt-16 border-t border-primary-foreground/20 pt-12 text-center lg:text-left">
+          <div className="grid gap-8 lg:grid-cols-3 lg:items-center">
+            <div className="lg:col-span-2">
+              <Link href="/" className="text-3xl font-extrabold tracking-tight">
+                Krovstvo Vrh
+              </Link>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-primary-foreground/70">
+                Zanesljivi strokovnjaki za strehe z več kot 20-letnimi izkušnjami. 
+                Ponosni smo na tisoče uspešno zaključenih projektov in zadovoljnih strank 
+                po vsej Sloveniji. Vaša varnost pod našo streho je naša prioriteta.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 lg:items-end">
+              <div className="flex gap-6 text-sm">
+                <Link
+                  href="/zasebnost"
+                  className="text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Politika zasebnosti
+                </Link>
+                <Link
+                  href="/piskotki"
+                  className="text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+                >
+                  Piškotki
+                </Link>
+              </div>
+              <p className="text-sm text-primary-foreground/50">
+                &copy; {new Date().getFullYear()} Krovstvo Vrh. Vse pravice pridržane.
+              </p>
+            </div>
           </div>
         </div>
       </div>

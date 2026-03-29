@@ -80,11 +80,20 @@ export function Hero() {
             </div>
 
             {/* Trust Badges */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-6 lg:justify-start">
-              {trustBadges.map((badge) => (
-                <div key={badge.label} className="flex items-center gap-2">
-                  <badge.icon className="size-5 text-primary" />
-                  <span className="text-sm font-medium text-foreground">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              {trustBadges.map((badge, index) => (
+                <div 
+                  key={badge.label} 
+                  className={`flex items-center gap-3 rounded-xl border border-border px-5 py-3 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 ${
+                    index % 2 === 0 ? "bg-blue-50/50" : "bg-amber-50/50"
+                  }`}
+                >
+                  <div className={`flex size-10 items-center justify-center rounded-lg ${
+                    index % 2 === 0 ? "bg-blue-100/50 text-blue-600" : "bg-amber-100/50 text-amber-600"
+                  }`}>
+                    <badge.icon className="size-6" />
+                  </div>
+                  <span className="text-sm font-bold tracking-tight text-foreground sm:text-base">
                     {badge.label}
                   </span>
                 </div>

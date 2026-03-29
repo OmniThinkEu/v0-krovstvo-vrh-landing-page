@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState, useCallback } from "react"
+import { useEffect, useCallback, useState } from "react"
+import useEmblaCarousel from "embla-carousel-react"
 import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -39,67 +40,45 @@ const testimonials = [
 ]
 
 export function Testimonials() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [isVisible, setIsVisible] = useState(false)
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: "start",
+    loop: true,
+    skipSnaps: false,
+  })
+  
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-  }, [])
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
 
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }, [])
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
 
-  // Auto-play carousel
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
   useEffect(() => {
-    if (!isAutoPlaying || !isVisible) return
-
-    const interval = setInterval(() => {
-      nextSlide()
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on("select", onSelect)
+    
+    // Auto-play
+    const timer = setInterval(() => {
+      emblaApi.scrollNext()
     }, 5000)
 
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, isVisible, nextSlide])
-
-  // Intersection observer for visibility and animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-          } else {
-            setIsVisible(false)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    return () => {
+      emblaApi.off("select", onSelect)
+      clearInterval(timer)
     }
-
-    return () => observer.disconnect()
-  }, [])
-
-  // Get visible testimonials (show 3 on desktop, 1 on mobile)
-  const getVisibleTestimonials = () => {
-    const result = []
-    for (let i = 0; i < 3; i++) {
-      const index = (currentIndex + i) % testimonials.length
-      result.push({ ...testimonials[index], index })
-    }
-    return result
-  }
+  }, [emblaApi, onSelect])
 
   return (
-    <section
-      ref={sectionRef}
-      className="bg-gradient-to-b from-background to-muted/30 py-16 lg:py-24"
-    >
+    <section className="bg-gradient-to-b from-background to-muted/30 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -110,18 +89,48 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div 
-          className="relative mt-12"
-          onMouseEnter={() => setIsAutoPlaying(false)}
-          onMouseLeave={() => setIsAutoPlaying(true)}
-        >
+        <div className="relative mt-12">
+          {/* embla carousel container */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex touch-pan-y -ml-4">
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  key={index} 
+                  className="flex-[0_0_100%] min-w-0 pl-4 md:flex-[0_0_50%] lg:flex-[0_0_33.33%]"
+                >
+                  <Card className="h-full flex flex-col bg-gradient-to-br from-card to-accent/5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <CardContent className="pt-6 flex-1">
+                      <div className="flex gap-1">
+                        {Array.from({ length: testimonial.rating }).map((_, i) => (
+                          <Star key={i} className="size-5 fill-accent text-accent" />
+                        ))}
+                      </div>
+                      <p className="mt-4 leading-relaxed text-muted-foreground italic">
+                        &ldquo;{testimonial.text}&rdquo;
+                      </p>
+                    </CardContent>
+                    <CardFooter className="border-t border-border/50 bg-muted/30 pt-6">
+                      <div>
+                        <p className="font-bold text-foreground">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {testimonial.location}
+                        </p>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Navigation Arrows */}
           <Button
             variant="outline"
             size="icon"
-            className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border-border bg-background/80 backdrop-blur-sm transition-all hover:scale-110 hover:bg-background md:flex"
-            onClick={prevSlide}
-            aria-label="Prejšnja ocena"
+            className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border-border bg-background/80 backdrop-blur-sm transition-all hover:scale-110 md:flex"
+            onClick={scrollPrev}
           >
             <ChevronLeft className="size-5" />
           </Button>
@@ -129,86 +138,31 @@ export function Testimonials() {
           <Button
             variant="outline"
             size="icon"
-            className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border-border bg-background/80 backdrop-blur-sm transition-all hover:scale-110 hover:bg-background md:flex"
-            onClick={nextSlide}
-            aria-label="Naslednja ocena"
+            className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border-border bg-background/80 backdrop-blur-sm transition-all hover:scale-110 md:flex"
+            onClick={scrollNext}
           >
             <ChevronRight className="size-5" />
           </Button>
 
-          {/* Testimonials Grid */}
-          <div className="overflow-hidden">
-            <div className="grid gap-6 md:grid-cols-3">
-              {getVisibleTestimonials().map((testimonial, idx) => (
-                <Card
-                  key={`${testimonial.index}-${currentIndex}`}
-                  className={`group transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-accent/30 bg-gradient-to-br from-card to-accent/5 ${
-                    idx === 1 ? "md:scale-105 md:shadow-lg" : "md:opacity-80 md:hover:opacity-100"
-                  }`}
-                >
-                  <CardContent className="pt-6">
-                    <div className="flex gap-1">
-                      {Array.from({ length: testimonial.rating }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className="size-5 fill-accent text-accent transition-transform duration-300 group-hover:scale-110"
-                          style={{ transitionDelay: `${i * 50}ms` }}
-                        />
-                      ))}
-                    </div>
-                    <p className="mt-4 leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">
-                      &ldquo;{testimonial.text}&rdquo;
-                    </p>
-                  </CardContent>
-                  <CardFooter className="border-t border-border/50 bg-muted/30">
-                    <div>
-                      <p className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.location}
-                      </p>
-                    </div>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="mt-6 flex items-center justify-center gap-4 md:hidden">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full"
-              onClick={prevSlide}
-              aria-label="Prejšnja ocena"
-            >
+          {/* Mobile Arrows */}
+          <div className="mt-8 flex justify-center gap-4 md:hidden">
+            <Button variant="outline" size="icon" className="rounded-full" onClick={scrollPrev}>
               <ChevronLeft className="size-5" />
             </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full"
-              onClick={nextSlide}
-              aria-label="Naslednja ocena"
-            >
+            <Button variant="outline" size="icon" className="rounded-full" onClick={scrollNext}>
               <ChevronRight className="size-5" />
             </Button>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="mt-8 flex items-center justify-center gap-2">
+          {/* Dots */}
+          <div className="mt-8 flex justify-center gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? "w-8 bg-accent" 
-                    : "w-2 bg-border hover:bg-muted-foreground/50"
+                  index === selectedIndex ? "w-8 bg-accent" : "w-2 bg-border"
                 }`}
-                aria-label={`Pojdi na oceno ${index + 1}`}
+                onClick={() => emblaApi?.scrollTo(index)}
               />
             ))}
           </div>

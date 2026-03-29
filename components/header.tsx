@@ -14,10 +14,9 @@ import {
 } from "@/components/ui/sheet"
 
 const navLinks = [
-  { label: "Domov", href: "#domov", anchor: "domov" },
-  { label: "Storitve", href: "#storitve", anchor: "storitve" },
-  { label: "Pogosta vprašanja", href: "#faq", anchor: "faq" },
-  { label: "Kontakt", href: "/kontakt", anchor: null },
+  { label: "Storitve", href: "/#storitve", anchor: "storitve" },
+  { label: "Projekti", href: "/projekti", anchor: null },
+  { label: "Pogosta vprašanja", href: "/faq", anchor: null },
 ]
 
 export function Header() {

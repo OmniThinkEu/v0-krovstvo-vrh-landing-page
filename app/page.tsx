@@ -5,10 +5,10 @@ import { ServicesGrid } from "@/components/services-grid"
 import { ServicesDetail } from "@/components/services-detail"
 import { Benefits } from "@/components/benefits"
 import { Testimonials } from "@/components/testimonials"
-import { FAQ } from "@/components/faq"
 import { ContactInfo } from "@/components/contact-info"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
+import { ProcessTimeline } from "@/components/process-timeline"
 
 export default function Home() {
   return (
@@ -21,8 +21,8 @@ export default function Home() {
         <ServicesDetail />
         <Benefits />
         <Testimonials />
-        <FAQ />
         <ContactInfo />
+        <ProcessTimeline />
         <CTASection />
       </main>
       <Footer />

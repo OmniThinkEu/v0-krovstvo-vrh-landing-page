@@ -73,11 +73,11 @@ function Counter({
   }, [inView, target, isText])
 
   if (isText) {
-    return <span className="text-3xl font-bold text-primary-foreground lg:text-4xl">{label}</span>
+    return <span className="text-2xl font-bold text-primary-foreground lg:text-3xl">{label}</span>
   }
 
   return (
-    <span className="text-3xl font-bold text-primary-foreground lg:text-4xl">
+    <span className="text-2xl font-bold text-primary-foreground lg:text-3xl">
       {count}
       {suffix}
     </span>
@@ -142,7 +142,7 @@ export function Benefits() {
                 />
               </div>
               {!benefit.isText && (
-                <p className="mt-1 text-lg font-semibold text-primary-foreground">
+                <p className="mt-1 text-base font-semibold text-primary-foreground">
                   {benefit.label}
                 </p>
               )}

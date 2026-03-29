@@ -38,6 +38,16 @@ const faqs = [
     answer:
       "Varnost in kakovost izvedbe sta nam na prvem mestu. V primeru neugodnih vremenskih razmer (močan dež, veter, zmrzal) dela preložimo na ustrezen termin, da zagotovimo optimalen rezultat.",
   },
+  {
+    question: "Kaj storiti v primeru nujnega popravila (npr. ob neurju)?",
+    answer:
+      "V nujnih primerih se trudimo odzvati v najkrajšem možnem času. Pokličite nas takoj, ko opazite poškodbo, da preprečimo vdor vode v objekt in dodatno škodo.",
+  },
+  {
+    question: "Kakšna je razlika med krovstvom in kleparstvom?",
+    answer:
+      "Krovstvo se nanaša na polaganje osnovne strešne kritine (opeka, pločevina, folija), kleparstvo pa na zaključna dela s pločevino (mo ntaža žlebov, obrob dimnikov, snegobranov). Mi nudimo obe storitvi za celovito strešno rešitev.",
+  },
 ]
 
 export function FAQ() {
