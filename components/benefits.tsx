@@ -73,11 +73,11 @@ function Counter({
   }, [inView, target, isText])
 
   if (isText) {
-    return <span className="text-2xl font-bold text-primary-foreground lg:text-3xl">{label}</span>
+    return <span className="text-xl font-bold text-primary-foreground lg:text-2xl">{label}</span>
   }
 
   return (
-    <span className="text-2xl font-bold text-primary-foreground lg:text-3xl">
+    <span className="text-xl font-bold text-primary-foreground lg:text-2xl">
       {count}
       {suffix}
     </span>

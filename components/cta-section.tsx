@@ -71,16 +71,6 @@ export function CTASection() {
                 <ArrowRight className="size-6 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white/10 h-16 px-10 text-xl font-bold backdrop-blur-sm"
-            >
-              <a href="tel:+38612345678">
-                Pokličite nas takoj
-              </a>
-            </Button>
           </div>
         </div>
       </div>
