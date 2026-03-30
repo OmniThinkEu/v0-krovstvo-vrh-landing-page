@@ -86,9 +86,12 @@ export function ServicesGrid() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Naše storitve
-          </h2>
+          <Link href="/storitve" className="group/title inline-block">
+            <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl transition-colors group-hover/title:text-accent">
+              Naše storitve
+            </h2>
+            <div className="h-1 w-0 bg-accent transition-all duration-300 group-hover/title:w-full mx-auto mt-2" />
+          </Link>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
             Ponujamo celovite krovske storitve za vse vrste streh - od montaže
             do vzdrževanja.

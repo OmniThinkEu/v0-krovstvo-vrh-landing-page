@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/sheet"
 
 const navLinks = [
-  { label: "Storitve", href: "/#storitve", anchor: "storitve" },
+  { label: "Storitve", href: "/storitve", anchor: null },
   { label: "Projekti", href: "/projekti", anchor: null },
   { label: "Pogosta vprašanja", href: "/faq", anchor: null },
 ]

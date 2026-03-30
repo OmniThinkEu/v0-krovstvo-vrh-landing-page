@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Shield, Clock, Award, ImageIcon } from "lucide-react"
 
@@ -73,9 +74,9 @@ export function Hero() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="#storitve" onClick={(e) => handleNavClick(e, "#storitve")}>
+                <Link href="/storitve">
                   Naše storitve
-                </a>
+                </Link>
               </Button>
             </div>
 
