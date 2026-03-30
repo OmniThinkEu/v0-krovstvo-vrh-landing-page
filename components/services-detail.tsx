@@ -14,7 +14,7 @@ const servicesDetail = [
       "Garancija na izvedbo do 10 let",
       "Čista in urejena gradbišča",
     ],
-    image: "/uploaded/image_5.png",
+    image: "/uploaded/service-montaza-detail.jpg",
     imageAlt: "Montaža nove strehe",
   },
   {
@@ -27,7 +27,7 @@ const servicesDetail = [
       "Izboljšanje hidroizolacije",
       "Energetska optimizacija",
     ],
-    image: "/uploaded/image_4.png",
+    image: "/uploaded/service-obnova-detail.png",
     imageAlt: "Obnova strehe",
   },
   {
@@ -40,7 +40,7 @@ const servicesDetail = [
       "Hitra in čista izvedba",
       "Dolgotrajna obstojnost",
     ],
-    image: "/uploaded/image_6.png",
+    image: "/uploaded/service-zamenjava-detail.jpg",
     imageAlt: "Zamenjava kritine",
   },
 ]

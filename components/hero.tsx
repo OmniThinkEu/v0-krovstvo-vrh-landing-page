@@ -109,7 +109,7 @@ export function Hero() {
           >
             <div className="group relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-2xl transition-all duration-500 hover:shadow-primary/10">
               <img 
-                src="/hero-roof.jpg" 
+                src="/uploaded/hero-premium.jpg" 
                 alt="Kvalitetna streha Krovstvo Vrh" 
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />

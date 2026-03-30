@@ -11,7 +11,7 @@ const servicesData: Record<string, any> = {
   montaza: {
     title: "Montaža novih streh",
     description: "Celovita montaža novih strešnih konstrukcij s kvalitetnimi materiali in strokovno izvedbo. Zagotavljamo dolgoročno varnost in estetski izgled vašega doma.",
-    image: "/uploaded/image_5.png",
+    image: "/uploaded/service-montaza-detail.jpg",
     features: [
       "Svetovanje pri izbiri kritine",
       "Priprava konstrukcije",
@@ -22,7 +22,7 @@ const servicesData: Record<string, any> = {
   obnova: {
     title: "Obnova in sanacija",
     description: "Temeljita obnova obstoječih streh z zamenjavo poškodovanih elementov. Podaljšujemo življenjsko dobo vaše strehe z uporabo sodobnih tehnik.",
-    image: "/uploaded/image_4.png",
+    image: "/uploaded/service-obnova-detail.png",
     features: [
       "Pregled stanja strehe",
       "Sanacija konstrukcije",
@@ -33,7 +33,7 @@ const servicesData: Record<string, any> = {
   zamenjava: {
     title: "Zamenjava kritine",
     description: "Zamenjava stare kritine z novo, izbira med različnimi materiali in barvami. Izboljšujemo vizualno podobo in zaščito vašega objekta.",
-    image: "/uploaded/image_6.png",
+    image: "/uploaded/service-zamenjava-grid.jpg",
     features: [
       "Odstranitev stare kritine",
       "Sanacija letvanja",
@@ -44,7 +44,7 @@ const servicesData: Record<string, any> = {
   izolacija: {
     title: "Izolacija in zateplitev",
     description: "Profesionalna toplotna izolacija za energetsko učinkovit dom. Zmanjšajte stroške ogrevanja in hkrati izboljšajte bivalno ugodje.",
-    image: "/uploaded/image.png",
+    image: "/uploaded/service-izolacija.jpg",
     features: [
       "Vgradnja parne zapore",
       "Izolacija med špirovci",
@@ -55,7 +55,7 @@ const servicesData: Record<string, any> = {
   popravila: {
     title: "Popravila in vzdrževanje",
     description: "Hitra in zanesljiva popravila ter redno vzdrževanje vaše strehe. Preprečujemo večje poškodbe z rednim pregledovanjem in nujnimi posegi.",
-    image: "/uploaded/image_7.png",
+    image: "/uploaded/service-popravila.jpg",
     features: [
       "Popravila obrob in žlebov",
       "Menjava posameznih strešnikov",
@@ -66,7 +66,7 @@ const servicesData: Record<string, any> = {
   zlebovi: {
     title: "Odvod vode - žlebovi",
     description: "Montaža in popravilo žlebov ter odtočnih cevi za učinkovit odvod vode. Preprečujemo zamakanje fasade in temeljev vašega doma.",
-    image: "/uploaded/image_1.png",
+    image: "/uploaded/service-zlebovi.jpg",
     features: [
       "Montaža bakrenih žlebov",
       "Montaža barvnih pločevinastih žlebov",

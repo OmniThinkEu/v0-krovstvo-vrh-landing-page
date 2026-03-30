@@ -27,7 +27,7 @@ const projects = [
     location: "Vrhnika",
     description: "Hitra in učinkovita sanacija poškodovane kritine po neurju z uporabo pločevinaste kritine Gerard.",
     beforeImage: "/projekti/roof-3-before.png",
-    afterImage: "/uploaded/image_3.png",
+    afterImage: "/uploaded/roof-3-after.jpg",
     beforePlaceholder: "Poškodovana streha",
     afterPlaceholder: "Sanirano stanje",
   },
