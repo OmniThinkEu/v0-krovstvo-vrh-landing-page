@@ -1,9 +1,28 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Shield, Clock, Award, ImageIcon } from "lucide-react"
+import { Shield, Clock, Award, ChevronRight } from "lucide-react"
+
+const slides = [
+  { 
+    url: "/hero/slide4.jpg", 
+    alt: "Moderna streha v naravi" 
+  },
+  { 
+    url: "/hero/slide1.jpg", 
+    alt: "Kvalitetna opečna streha" 
+  },
+  { 
+    url: "/hero/slide2.jpg", 
+    alt: "Detajl strešne kritine" 
+  },
+  { 
+    url: "/hero/slide3.jpg", 
+    alt: "Pogled na streho od zgoraj" 
+  },
+]
 
 const trustBadges = [
   { icon: Shield, label: "Garancija na delo" },
@@ -12,7 +31,16 @@ const trustBadges = [
 ]
 
 export function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 5000)
+
+    return () => clearInterval(timer)
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,100 +73,123 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="domov"
-      className="relative min-h-screen bg-gradient-to-b from-muted/50 to-background pt-20 lg:pt-24"
+      className="relative min-h-[90vh] w-full overflow-hidden flex items-center justify-center pt-20"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-12 py-12 lg:flex-row lg:gap-16 lg:py-20">
-          {/* Text Content */}
+      {/* Background Slideshow */}
+      <div className="absolute inset-0 z-0">
+        {slides.map((slide, index) => (
           <div
-            data-animate
-            className="flex flex-1 flex-col items-center text-center opacity-0 duration-700 lg:items-start lg:text-left"
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
           >
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Zanesljiva streha za vaš dom
-            </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground lg:text-xl">
-              Več kot 20 let izkušenj z montažo, obnovo in vzdrževanjem streh v
-              Ljubljani in okolici. Zaupajte svojo streho strokovnjakom.
-            </p>
+            <div className="absolute inset-0 bg-black/50 z-10" />
+            <img
+              src={slide.url}
+              alt={slide.alt}
+              className={`h-full w-full object-cover transition-transform duration-[10000ms] ease-linear ${
+                index === currentSlide ? "scale-110" : "scale-100"
+              }`}
+            />
+          </div>
+        ))}
+      </div>
 
-            {/* CTA Buttons */}
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90"
-              >
-                <a href="#kontakt" onClick={(e) => handleNavClick(e, "#kontakt")}>
-                  Pridobite brezplačno ponudbo
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/storitve">
-                  Naše storitve
-                </Link>
-              </Button>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-              {trustBadges.map((badge, index) => (
-                <div 
-                  key={badge.label} 
-                  className={`flex items-center gap-3 rounded-xl border border-border px-5 py-3 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 ${
-                    index % 2 === 0 ? "bg-blue-50/50" : "bg-amber-50/50"
-                  }`}
-                >
-                  <div className={`flex size-10 items-center justify-center rounded-lg ${
-                    index % 2 === 0 ? "bg-blue-100/50 text-blue-600" : "bg-amber-100/50 text-amber-600"
-                  }`}>
-                    <badge.icon className="size-6" />
-                  </div>
-                  <span className="text-sm font-bold tracking-tight text-foreground sm:text-base">
-                    {badge.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+      {/* Content Overlay */}
+      <div className="relative z-[30] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
+        <div className="flex flex-col items-center text-center">
+          <div 
+            data-animate 
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-1.5 text-xs font-bold text-white shadow-xl backdrop-blur-md mb-8 duration-700"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+            </span>
+            VRHUNSKA KAKOVOST ŽE VEČ KOT 20 LET
           </div>
 
-          {/* Image with CTA Overlay */}
-          <div
+          <h1 
             data-animate
-            className="flex flex-1 items-center justify-center opacity-0 duration-700"
+            className="text-balance text-5xl font-black tracking-tight text-white sm:text-7xl lg:text-8xl duration-700 leading-[1.1]"
+            style={{ animationDelay: "100ms" }}
+          >
+            Vaša varna in trajna <br className="hidden lg:block" />
+            <span className="text-amber-400 drop-shadow-[0_0_20px_rgba(0,0,0,0.5)]">streha se začne tukaj</span>
+          </h1>
+          
+          <p 
+            data-animate
+            className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-white lg:text-2xl font-bold duration-700 drop-shadow-lg"
             style={{ animationDelay: "200ms" }}
           >
-            <div className="group relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-2xl transition-all duration-500 hover:shadow-primary/10">
-              <img 
-                src="/uploaded/hero-premium.jpg" 
-                alt="Kvalitetna streha Krovstvo Vrh" 
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 transition-opacity duration-500 group-hover:opacity-80" />
-              
-              {/* Floating Badge */}
-              <div className="absolute right-6 top-6 flex flex-col items-end gap-2">
-                <div className="rounded-full bg-accent px-4 py-1.5 text-xs font-bold text-accent-foreground shadow-lg backdrop-blur-sm">
-                  100% KAKOVOST
-                </div>
-              </div>
+            Zaupajte krovskim mojstrom z dolgoletno tradicijo. Zagotavljamo brezhibno montažo, 
+            estetsko dovršenost in dolgotrajno garancijo na vsa opravljena dela.
+          </p>
 
-              {/* CTA Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-8 transform transition-transform duration-500 group-hover:translate-y-[-8px]">
-                <p className="text-lg font-bold text-white drop-shadow-md">Vaša nova streha se začne tukaj</p>
-                <Button
-                  asChild
-                  size="lg"
-                  className="mt-4 w-full bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl"
-                >
-                  <a href="/kontakt">
-                    Pridobite brezplačno ponudbo
-                  </a>
-                </Button>
+          <div 
+            data-animate
+            className="mt-12 flex flex-col items-center gap-5 sm:flex-row duration-700"
+            style={{ animationDelay: "300ms" }}
+          >
+            <Button
+              asChild
+              size="lg"
+              className="bg-amber-500 text-black hover:bg-amber-400 px-10 py-8 text-xl font-black shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-all hover:scale-105 active:scale-95"
+            >
+              <Link href="/kontakt">
+                Brezplačna ponudba
+                <ChevronRight className="ml-2 size-6 stroke-[3px]" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white/30 bg-black/40 text-white hover:bg-black/60 backdrop-blur-sm px-10 py-8 text-xl font-bold"
+            >
+              <Link href="/storitve">
+                Naše storitve
+              </Link>
+            </Button>
+          </div>
+
+          {/* Trust Badges Floating */}
+          <div 
+            data-animate
+            className="mt-20 flex flex-wrap items-center justify-center gap-8 duration-700"
+            style={{ animationDelay: "400ms" }}
+          >
+            {trustBadges.map((badge) => (
+              <div 
+                key={badge.label} 
+                className="flex items-center gap-4 rounded-2xl border border-white/20 bg-black/60 px-8 py-4 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:bg-black/80 hover:-translate-y-1 group"
+              >
+                <div className="flex size-12 items-center justify-center rounded-xl bg-amber-500/20 text-amber-500 group-hover:bg-amber-500 group-hover:text-black transition-colors duration-300">
+                  <badge.icon className="size-7" />
+                </div>
+                <span className="text-base font-bold tracking-tight text-white">
+                  {badge.label}
+                </span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-10 left-1/2 z-30 flex -translate-x-1/2 gap-3">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "w-8 bg-accent" : "w-2 bg-white/30 hover:bg-white/50"
+            }`}
+            aria-label={`Slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   )
