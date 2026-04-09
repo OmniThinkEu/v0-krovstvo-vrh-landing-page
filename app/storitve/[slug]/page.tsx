@@ -21,12 +21,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { 
-  Accordion, 
-  AccordionContent, 
-  AccordionItem, 
-  AccordionTrigger 
-} from "@/components/ui/accordion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -417,33 +411,6 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-16 lg:py-24">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-               <HelpCircle className="size-12 text-accent mx-auto mb-4" />
-               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Pogosta vprašanja
-               </h2>
-               <p className="mt-4 text-lg text-muted-foreground">
-                  Vse, kar morate vedeti o storitvi {service.title}.
-               </p>
-            </div>
-
-            <Accordion type="single" collapsible className="w-full">
-              {service.faqs.map((faq: any, i: number) => (
-                <AccordionItem key={i} value={`item-${i}`} className="border-b border-border/50">
-                  <AccordionTrigger className="text-left font-bold py-6 hover:text-accent transition-colors">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6 text-lg">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
 
         <ProcessTimeline />
         <Testimonials />

@@ -71,7 +71,7 @@ export function Testimonials() {
     onSelect()
     emblaApi.on("select", onSelect)
     
-    // Auto-play
+    // Auto-play timer that resets when slide changes (manually or automatically)
     const timer = setInterval(() => {
       emblaApi.scrollNext()
     }, 5000)
@@ -80,7 +80,7 @@ export function Testimonials() {
       emblaApi.off("select", onSelect)
       clearInterval(timer)
     }
-  }, [emblaApi, onSelect])
+  }, [emblaApi, onSelect, selectedIndex])
 
   return (
     <section className="bg-gradient-to-b from-background to-muted/30 py-16 lg:py-24">

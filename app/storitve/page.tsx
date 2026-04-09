@@ -1,7 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ServicesGrid } from "@/components/services-grid"
-import { FAQ } from "@/components/faq"
 import { CTASection } from "@/components/cta-section"
 import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
@@ -87,9 +86,6 @@ export default function ServicesPage() {
            </div>
         </section>
 
-        <div className="bg-muted/10">
-          <FAQ />
-        </div>
 
         <CTASection />
       </main>
