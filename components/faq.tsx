@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import {
   Accordion,
@@ -97,8 +97,20 @@ const faqs = [
 
 export function FAQ() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const answersRef = useRef<HTMLDivElement>(null)
 
   const filteredFaqs = faqs.filter(faq => faq.category === activeCategory)
+
+  const handleCategoryClick = (catId: string) => {
+    const newCategory = catId === activeCategory ? null : catId
+    setActiveCategory(newCategory)
+    if (newCategory) {
+      // Short delay so the state update renders before we scroll
+      setTimeout(() => {
+        answersRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 50)
+    }
+  }
 
   return (
     <section
@@ -123,7 +135,7 @@ export function FAQ() {
             <button
               key={cat.id}
               style={{ animationDelay: `${600 + index * 100}ms` }}
-              onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
+              onClick={() => handleCategoryClick(cat.id)}
               className={cn(
                 "fade-up-onload p-8 rounded-3xl bg-card border-2 shadow-sm transition-all duration-500 text-left relative overflow-hidden group",
                 activeCategory === cat.id
@@ -153,7 +165,7 @@ export function FAQ() {
         </div>
 
         {/* FAQ Display Area */}
-        <div className={`transition-all duration-700 ease-in-out px-2 lg:px-0 ${activeCategory ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+        <div ref={answersRef} className={`scroll-mt-24 transition-all duration-700 ease-in-out px-2 lg:px-0 ${activeCategory ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
           {activeCategory && (
             <div className="mx-auto max-w-4xl">
               <div className="flex items-center gap-6 mb-12 border-l-4 border-accent pl-8">

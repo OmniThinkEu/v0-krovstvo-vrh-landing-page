@@ -137,26 +137,26 @@ export function Header() {
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
-              <SheetHeader>
+            <SheetContent side="right" className="w-[300px] px-6">
+              <SheetHeader className="px-0">
                 <SheetTitle className="text-left text-xl font-bold text-primary">
                   Krovstvo Vrh
                 </SheetTitle>
               </SheetHeader>
-              <nav className="mt-8 flex flex-col gap-4">
+              <nav className="mt-8 flex flex-col gap-2">
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.anchor ? `/#${link.anchor}` : link.href}
                     onClick={(e) => handleNavClick(e, link)}
-                    className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                    className="rounded-lg px-4 py-3 text-lg font-medium text-foreground transition-colors hover:bg-muted hover:text-primary text-center"
                   >
                     {link.label}
                   </a>
                 ))}
                 <Button
                   asChild
-                  className="mt-4 w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                  className="mt-6 w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold"
                 >
                   <Link href="/kontakt" onClick={() => setIsOpen(false)}>
                     Brezplačna ponudba

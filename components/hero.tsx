@@ -67,7 +67,7 @@ export function Hero() {
   return (
     <section
       id="domov"
-      className="relative min-h-[90vh] w-full overflow-hidden flex items-center justify-center pt-20"
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-16 lg:pt-20"
     >
       {/* Background Slideshow */}
       <div className="absolute inset-0 z-0">
@@ -92,7 +92,7 @@ export function Hero() {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-[30] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
+      <div className="relative z-[30] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-24">
         <div className="flex flex-col items-center text-center">
           {/* GROUP 1: Top Badge (Certificate) */}
           <div 
@@ -110,7 +110,7 @@ export function Hero() {
           {/* GROUP 1: Main Header Title */}
           <h1 
             className={cn(
-              "text-balance text-5xl font-black tracking-tight text-white sm:text-7xl lg:text-8xl leading-[1.1]",
+              "text-balance text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-8xl leading-[1.1]",
               stage >= 1 ? "hero-animate" : "hero-initial"
             )}
           >
@@ -121,7 +121,7 @@ export function Hero() {
           {/* GROUP 2: Description Text */}
           <p 
             className={cn(
-              "mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-white lg:text-2xl font-bold drop-shadow-lg",
+              "mt-5 max-w-2xl text-pretty text-sm leading-relaxed text-white sm:text-lg lg:text-2xl font-bold drop-shadow-lg",
               stage >= 2 ? "hero-animate" : "hero-initial"
             )}
           >
@@ -132,25 +132,25 @@ export function Hero() {
           {/* GROUP 2: CTA Buttons */}
           <div 
             className={cn(
-              "mt-12 flex flex-col items-center gap-5 sm:flex-row",
+              "mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-5",
               stage >= 2 ? "hero-animate" : "hero-initial"
             )}
           >
             <Button
               asChild
               size="lg"
-              className="bg-amber-500 text-black hover:bg-amber-400 px-10 py-8 text-xl font-black shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-all hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto bg-amber-500 text-black hover:bg-amber-400 px-8 py-6 text-base sm:text-xl font-black shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-all hover:scale-105 active:scale-95"
             >
               <Link href="/kontakt">
                 Brezplačna ponudba
-                <ChevronRight className="ml-2 size-6 stroke-[3px]" />
+                <ChevronRight className="ml-2 size-5 stroke-[3px]" />
               </Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="border-white/30 bg-black/40 text-white hover:bg-black/60 backdrop-blur-sm px-10 py-8 text-xl font-bold"
+              className="w-full sm:w-auto border-white/30 bg-black/40 text-white hover:bg-black/60 backdrop-blur-sm px-8 py-6 text-base sm:text-xl font-bold"
             >
               <Link href="/storitve">
                 Naše storitve
@@ -161,19 +161,19 @@ export function Hero() {
           {/* GROUP 3: 3 Certificates (Trust Badges) */}
           <div 
             className={cn(
-              "mt-20 flex flex-wrap items-center justify-center gap-8",
+              "mt-10 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 items-center justify-center gap-3 lg:gap-8 w-full max-w-2xl",
               stage >= 3 ? "hero-animate" : "hero-initial"
             )}
           >
             {trustBadges.map((badge) => (
               <div 
                 key={badge.label} 
-                className="flex items-center gap-4 rounded-2xl border border-white/20 bg-black/60 px-8 py-4 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:bg-black/80 hover:-translate-y-1 group"
+                className="flex items-center gap-3 rounded-xl border border-white/20 bg-black/60 px-4 py-3 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:bg-black/80 hover:-translate-y-1 group"
               >
-                <div className="flex size-12 items-center justify-center rounded-xl bg-amber-500/20 text-amber-500 group-hover:bg-amber-500 group-hover:text-black transition-colors duration-300">
-                  <badge.icon className="size-7" />
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-500 group-hover:bg-amber-500 group-hover:text-black transition-colors duration-300">
+                  <badge.icon className="size-5" />
                 </div>
-                <span className="text-base font-bold tracking-tight text-white">
+                <span className="text-sm font-bold tracking-tight text-white">
                   {badge.label}
                 </span>
               </div>
