@@ -121,15 +121,15 @@ export function ContactFormPage() {
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl fade-up-onload">
               Pridobite brezplačno ponudbo
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground lg:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground lg:text-xl fade-up-onload delay-150">
               Izpolnite obrazec in v kratkem času vam bomo pripravili ponudbo po meri, ki bo ustrezala vašim potrebam.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start">
+          <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start fade-up-onload delay-300">
             {/* Left Column: Contact info provided first as requested */}
             <div className="flex flex-col gap-8">
               <div>

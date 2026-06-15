@@ -1,16 +1,17 @@
 "use client"
 
 import { useState } from "react"
+import { cn } from "@/lib/utils"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { 
-  RefreshCw, 
-  ShieldCheck, 
-  Package, 
+import {
+  RefreshCw,
+  ShieldCheck,
+  Package,
   HelpCircle,
   Construction,
   MessageSquare
@@ -18,10 +19,10 @@ import {
 import { Button } from "@/components/ui/button"
 
 const categories = [
-  { id: "montaza", title: "Montaža", count: 12, icon: Construction, color: "text-blue-500" },
-  { id: "obnova", title: "Obnova", count: 8, icon: RefreshCw, color: "text-green-500" },
-  { id: "materiali", title: "Materiali", count: 15, icon: Package, color: "text-orange-500" },
-  { id: "garancija", title: "Garancija", count: 6, icon: ShieldCheck, color: "text-purple-500" },
+  { id: "montaza", title: "Montaža", count: 3, icon: Construction, color: "text-blue-500" },
+  { id: "obnova", title: "Obnova", count: 3, icon: RefreshCw, color: "text-green-500" },
+  { id: "materiali", title: "Materiali", count: 3, icon: Package, color: "text-orange-500" },
+  { id: "garancija", title: "Garancija", count: 3, icon: ShieldCheck, color: "text-purple-500" },
 ]
 
 const faqs = [
@@ -41,7 +42,7 @@ const faqs = [
     question: "Ali potrebujem gradbeno dovoljenje za novo streho?",
     answer: "Za redna vzdrževalna dela in zamenjavo kritine brez spreminjanja nosilne konstrukcije ali naklona strehe gradbeno dovoljenje običajno ni potrebno. Pri večjih posegih v konstrukcijo pa vam bomo z veseljem svetovali glede predpisov."
   },
-  
+
   // Obnova
   {
     category: "obnova",
@@ -115,32 +116,36 @@ export function FAQ() {
         </div>
 
         {/* Categories Selection - Card Style */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20 px-2 lg:px-0">
-          {categories.map((cat) => (
+        <div
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-20 px-2 lg:px-0"
+        >
+          {categories.map((cat, index) => (
             <button
               key={cat.id}
+              style={{ animationDelay: `${600 + index * 100}ms` }}
               onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
-              className={`p-8 rounded-3xl bg-card border-2 shadow-sm transition-all duration-500 text-left relative overflow-hidden group ${
-                activeCategory === cat.id 
-                  ? "border-accent ring-2 ring-accent/30 shadow-2xl scale-[1.03] z-10" 
+              className={cn(
+                "fade-up-onload p-8 rounded-3xl bg-card border-2 shadow-sm transition-all duration-500 text-left relative overflow-hidden group",
+                activeCategory === cat.id
+                  ? "border-accent ring-2 ring-accent/30 shadow-2xl scale-[1.03] z-10"
                   : "border-border/40 hover:border-accent/40 hover:shadow-xl"
-              }`}
+              )}
             >
               <div className="flex justify-between items-start mb-4">
-                 <div className={`p-3 rounded-2xl bg-muted transition-colors ${activeCategory === cat.id ? "bg-accent/10" : ""}`}>
-                    <cat.icon className={`size-8 ${activeCategory === cat.id ? "text-accent" : "text-muted-foreground"}`} />
-                 </div>
-                 <div className={`size-3 rounded-full ${activeCategory === cat.id ? "bg-accent animate-pulse" : "bg-border"}`} />
+                <div className={`p-3 rounded-2xl bg-muted transition-colors ${activeCategory === cat.id ? "bg-accent/10" : ""}`}>
+                  <cat.icon className={`size-8 ${activeCategory === cat.id ? "text-accent" : "text-muted-foreground"}`} />
+                </div>
+                <div className={`size-3 rounded-full ${activeCategory === cat.id ? "bg-accent animate-pulse" : "bg-border"}`} />
               </div>
               <h3 className={`text-2xl font-bold italic tracking-tight ${activeCategory === cat.id ? "text-accent" : "text-foreground"}`}>
                 {cat.title}
               </h3>
               <p className="mt-2 text-muted-foreground font-medium">{cat.count} vprašanj</p>
-              
+
               {/* Decorative background element on active */}
               {activeCategory === cat.id && (
                 <div className="absolute -bottom-6 -right-6 opacity-5 rotate-12">
-                   <cat.icon className="size-32" />
+                  <cat.icon className="size-32" />
                 </div>
               )}
             </button>
@@ -151,20 +156,20 @@ export function FAQ() {
         <div className={`transition-all duration-700 ease-in-out px-2 lg:px-0 ${activeCategory ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
           {activeCategory && (
             <div className="mx-auto max-w-4xl">
-               <div className="flex items-center gap-6 mb-12 border-l-4 border-accent pl-8">
-                  <div>
-                    <h3 className="text-3xl font-extrabold italic text-foreground tracking-tight">
-                      {categories.find(c => c.id === activeCategory)?.title}
-                    </h3>
-                    <p className="text-muted-foreground font-medium mt-1">Najpogosteje zastavljena vprašanja in odgovori</p>
-                  </div>
-               </div>
+              <div className="flex items-center gap-6 mb-12 border-l-4 border-accent pl-8">
+                <div>
+                  <h3 className="text-3xl font-extrabold italic text-foreground tracking-tight">
+                    {categories.find(c => c.id === activeCategory)?.title}
+                  </h3>
+                  <p className="text-muted-foreground font-medium mt-1">Najpogosteje zastavljena vprašanja in odgovori</p>
+                </div>
+              </div>
 
               <div className="space-y-4">
                 <Accordion type="single" collapsible className="w-full">
                   {filteredFaqs.map((faq, index) => (
-                    <AccordionItem 
-                      key={index} 
+                    <AccordionItem
+                      key={index}
                       value={`item-${index}`}
                       className="border-none mb-4"
                     >
@@ -172,9 +177,9 @@ export function FAQ() {
                         {faq.question}
                       </AccordionTrigger>
                       <AccordionContent className="bg-muted/30 px-8 py-8 rounded-b-2xl -mt-4 border-x border-b border-border/40 text-muted-foreground leading-relaxed text-lg tabular-nums">
-                         <div className="prose prose-p:italic max-w-none text-foreground/90">
-                            {faq.answer}
-                         </div>
+                        <div className="prose prose-p:italic max-w-none text-foreground/90">
+                          {faq.answer}
+                        </div>
                       </AccordionContent>
                     </AccordionItem>
                   ))}
@@ -185,25 +190,25 @@ export function FAQ() {
         </div>
 
         {!activeCategory && (
-            <div className="text-center py-24 mb-16 px-4">
-               <div className="inline-flex size-24 items-center justify-center rounded-3xl bg-muted border-2 border-dashed border-border/50 text-muted-foreground mb-8">
-                  <HelpCircle className="size-12 opacity-50" />
-               </div>
-               <h3 className="text-3xl font-bold text-foreground/40 italic mb-4">Prosimo, izberite kategorijo zgoraj</h3>
-               <p className="text-muted-foreground max-w-md mx-auto font-medium text-lg leading-relaxed">
-                  Za dostop do odgovorov kliknite na eno od kategorij. Vsaka vsebuje preverjene informacije s strani naših strokovnjakov.
-               </p>
+          <div className="text-center py-24 mb-16 px-4">
+            <div className="inline-flex size-24 items-center justify-center rounded-3xl bg-muted border-2 border-dashed border-border/50 text-muted-foreground mb-8">
+              <HelpCircle className="size-12 opacity-50" />
             </div>
+            <h3 className="text-3xl font-bold text-foreground/40 italic mb-4">Prosimo, izberite kategorijo zgoraj</h3>
+            <p className="text-muted-foreground max-w-md mx-auto font-medium text-lg leading-relaxed">
+              Za dostop do odgovorov kliknite na eno od kategorij. Vsaka vsebuje preverjene informacije s strani naših strokovnjakov.
+            </p>
+          </div>
         )}
 
         <div className="mt-12 text-center bg-accent/5 py-12 rounded-3xl border border-accent/10 px-4">
-            <p className="text-foreground font-bold text-lg mb-6 tracking-tight">Potrebujete dodatno pojasnilo ali nasvet?</p>
-            <Button size="lg" asChild className="rounded-full px-12 bg-accent text-accent-foreground shadow-2xl hover:shadow-accent/40 hover:scale-105 transition-all duration-300">
-                <a href="/kontakt" className="flex items-center gap-3">
-                   <MessageSquare className="size-5" />
-                   Pošljite povpraševanje
-                </a>
-            </Button>
+          <p className="text-foreground font-bold text-lg mb-6 tracking-tight">Potrebujete dodatno pojasnilo ali nasvet?</p>
+          <Button size="lg" asChild className="rounded-full px-12 bg-accent text-accent-foreground shadow-2xl hover:shadow-accent/40 hover:scale-105 transition-all duration-300">
+            <a href="/kontakt" className="flex items-center gap-3">
+              <MessageSquare className="size-5" />
+              Pošljite povpraševanje
+            </a>
+          </Button>
         </div>
       </div>
     </section>

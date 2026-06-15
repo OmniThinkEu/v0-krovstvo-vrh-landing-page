@@ -21,16 +21,38 @@ const navLinks = [
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const isHomePage = pathname === "/"
 
   useEffect(() => {
+    let lastScrollY = window.scrollY
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      const currentScrollY = window.scrollY
+
+      // Always show at the absolute top of the page
+      if (currentScrollY <= 10) {
+        setIsVisible(true)
+        setIsScrolled(false)
+        lastScrollY = currentScrollY
+        return
+      }
+
+      // Hide when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+
+      setIsScrolled(currentScrollY > 20)
+      lastScrollY = currentScrollY
     }
-    window.addEventListener("scroll", handleScroll)
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -60,6 +82,8 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm transition-all duration-300 ${
         isScrolled ? "h-14" : "h-16 lg:h-20"
+      } ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">

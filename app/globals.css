@@ -148,3 +148,16 @@
     transform: translateY(0);
   }
 }
+
+/* Staggered page load animations with zero flash */
+.fade-up-onload {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: hero-enter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.delay-75 { animation-delay: 75ms !important; }
+.delay-150 { animation-delay: 150ms !important; }
+.delay-300 { animation-delay: 300ms !important; }
+.delay-450 { animation-delay: 450ms !important; }
+.delay-600 { animation-delay: 600ms !important; }

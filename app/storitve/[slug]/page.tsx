@@ -285,23 +285,23 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
           <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Link 
               href="/#storitve" 
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent/80 mb-8 transition-colors"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent/80 mb-8 transition-colors fade-up-onload"
             >
               <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
               Nazaj na vse storitve
             </Link>
             
             <div className="max-w-3xl">
-              <Badge variant="outline" className="mb-4 border-accent text-accent px-3 py-1 text-xs uppercase tracking-widest font-bold">
+              <Badge variant="outline" className="mb-4 border-accent text-accent px-3 py-1 text-xs uppercase tracking-widest font-bold fade-up-onload delay-75">
                 Krovstvo Vrh d.o.o.
               </Badge>
-              <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
+              <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-7xl fade-up-onload delay-150">
                 {service.title}
               </h1>
-              <p className="mt-8 text-xl leading-relaxed text-muted-foreground lg:text-2xl">
+              <p className="mt-8 text-xl leading-relaxed text-muted-foreground lg:text-2xl fade-up-onload delay-300">
                 {service.description}
               </p>
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-10 flex flex-wrap gap-4 fade-up-onload delay-450">
                 <Link 
                    href="/#kontakt"
                    className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-8 text-sm font-bold text-accent-foreground shadow-lg transition-all hover:scale-105 active:scale-95"

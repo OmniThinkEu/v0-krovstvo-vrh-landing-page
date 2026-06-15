@@ -1,3 +1,7 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { cn } from "@/lib/utils"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ServicesGrid } from "@/components/services-grid"
@@ -6,6 +10,20 @@ import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 
 export default function ServicesPage() {
+  const [stage, setStage] = useState(0)
+
+  useEffect(() => {
+    setStage(1)
+    const t2 = setTimeout(() => setStage(2), 150)
+    const t3 = setTimeout(() => setStage(3), 300)
+    const t4 = setTimeout(() => setStage(4), 450)
+    return () => {
+      clearTimeout(t2)
+      clearTimeout(t3)
+      clearTimeout(t4)
+    }
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -18,19 +36,41 @@ export default function ServicesPage() {
            
            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
              <div className="flex flex-col items-center text-center">
-               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent-foreground text-sm font-bold mb-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
+               <div 
+                 className={cn(
+                   "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent-foreground text-sm font-bold mb-6 transition-all duration-700",
+                   stage >= 1 ? "hero-animate" : "hero-initial"
+                 )}
+               >
                  <ShieldCheck className="size-4 text-accent" />
                  <span>Strokovne krovske rešitve</span>
                </div>
-               <h1 className="text-4xl font-extrabold tracking-tight text-white mb-6 sm:text-5xl lg:text-7xl animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 italic">
+               
+               <h1 
+                 className={cn(
+                   "text-4xl font-extrabold tracking-tight text-white mb-6 sm:text-5xl lg:text-7xl italic transition-all duration-700",
+                   stage >= 2 ? "hero-animate" : "hero-initial"
+                 )}
+               >
                  Naše Storitve
                </h1>
-               <p className="max-w-2xl text-xl text-white/80 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+               
+               <p 
+                 className={cn(
+                   "max-w-2xl text-xl text-white/80 leading-relaxed transition-all duration-700",
+                   stage >= 3 ? "hero-animate" : "hero-initial"
+                 )}
+               >
                  Ponujamo celovite in kakovostne krovske storitve, prilagojene vašim potrebam. 
                  Zaupajte nam svojo streho in poskrbeli bomo za dolgotrajno varnost vašega doma.
                </p>
                
-               <div className="mt-10 flex gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+               <div 
+                 className={cn(
+                   "mt-10 flex gap-4 transition-all duration-700",
+                   stage >= 4 ? "hero-animate" : "hero-initial"
+                 )}
+               >
                   <div className="flex items-center gap-2 text-white/70 text-sm">
                     <CheckCircle2 className="size-5 text-accent" />
                     <span>Brezplačen ogled</span>
